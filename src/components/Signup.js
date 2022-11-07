@@ -1,10 +1,82 @@
 import React from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [signpRes, setSignupRes] = useState('');
+  const [alertStyle, setAlertStyle] = useState({
+    backgroundColor: 'blueviolet',
+    width: "400px",
+    display: 'none'
+  });
+
+  const signup = async (e) => {
+    e.preventDefault();
+
+    if (name && email && password) {
+      let result = await fetch('http://localhost:5000/signup', {
+        method: 'post',
+        body: JSON.stringify({ name, email, password }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      result = await result.json();
+
+      if (result.authToken) {
+        localStorage.setItem('token', result.authToken);
+        setSignupRes('You have successfully signed up');
+        setAlertStyle({
+          backgroundColor: 'blueviolet',
+          width: "400px",
+          display: 'block'
+        })
+        console.log(result.authToken)
+      }
+
+      if (result.error) {
+        setSignupRes(result.error);
+        setAlertStyle({
+          backgroundColor: 'blueviolet',
+          width: "400px",
+          display: 'block'
+        })
+        console.log(result.error)
+      }
+    } else {
+      setSignupRes('Please enter all the details');
+      setAlertStyle({
+        backgroundColor: 'blueviolet',
+        width: "400px",
+        display: 'block'
+      })
+    }
+  }
+
   return (
-    <div>
-      Signup
-    </div>
+    <>
+      <h4 className='text-center mt-5 mb-4 bolder'>SIGN UP</h4>
+      <p className='p-2 ps-4 rounded-3 mx-auto' style={alertStyle}>{signpRes}</p>
+      <div className='signup p-3 d-flex justify-content-center align-items-center'>
+        <form className='signupform'>
+          <label htmlFor="nameInput">Name</label>
+          <input required onChange={(e) => { setName(e.target.value) }} type="text" id="nameInput" placeholder='Enter Your Name' />
+          <label htmlFor="emailInput">Email Address</label>
+          <input required onChange={(e) => { setEmail(e.target.value) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
+          <label htmlFor="passInput">Password</label>
+          <input required onChange={(e) => { setPassword(e.target.value) }} type="password" id="passInput" placeholder='Enter Your Password' />
+          <button onClick={signup} type='submit' className='p-1 py-2 fw-bold fs-5 rounded-3'>SIGN UP</button>
+        </form>
+      </div>
+      <div className="formLast d-flex justify-content-center">
+        <p className='me-2'>Already have an account? </p> <Link to='/login'>Log in</Link>
+      </div>
+    </>
   )
 }
 

@@ -9,8 +9,8 @@ body {
 
 header {
   background-color: rgba(62, 53, 53, 0.521);
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 13px;
+  padding-bottom: 13px;
 }
 
 header p {
@@ -56,4 +56,42 @@ header p {
   justify-content: center;
   align-items: center;
   margin-left: 10px !important;
+}
+
+/* sign up */
+.signupform input{
+  display: block;
+  padding: 10px;
+  padding-left: 20px;
+  width: 400px;
+  background-color: rgba(62, 53, 53, 0.521);
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  margin-top: 8px !important;
+  margin-bottom: 20px !important;
+}
+
+.signupform input:focus {
+  border: 0.1px solid white;
+  background-color: black;
+}
+
+.signupform label {
+  margin-left: 10px !important;
+}
+
+.signupform button {
+  width: 400px;
+  background-color: blueviolet;
+  color: white;
+}
+
+.formLast {
+  margin-top: -10px !important;
+}
+
+a {
+  text-decoration: none;
 }
