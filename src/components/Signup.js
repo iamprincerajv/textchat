@@ -17,7 +17,7 @@ const Signup = () => {
   const signup = async (e) => {
     e.preventDefault();
 
-    if (name && email && password) {
+    if (name.length>2 && email && password.length>5) {
       let result = await fetch('http://localhost:5000/signup', {
         method: 'post',
         body: JSON.stringify({ name, email, password }),
@@ -30,7 +30,7 @@ const Signup = () => {
 
       if (result.authToken) {
         localStorage.setItem('token', result.authToken);
-        setSignupRes('You have successfully signed up');
+        setSignupRes('You have successfully signed up!');
         setAlertStyle({
           backgroundColor: 'blueviolet',
           width: "400px",
@@ -49,7 +49,7 @@ const Signup = () => {
         console.log(result.error)
       }
     } else {
-      setSignupRes('Please enter all the details');
+      setSignupRes('Please enter all the details correctly');
       setAlertStyle({
         backgroundColor: 'blueviolet',
         width: "400px",
@@ -65,11 +65,11 @@ const Signup = () => {
       <div className='signup p-3 d-flex justify-content-center align-items-center'>
         <form className='signupform'>
           <label htmlFor="nameInput">Name</label>
-          <input required onChange={(e) => { setName(e.target.value) }} type="text" id="nameInput" placeholder='Enter Your Name' />
+          <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" id="nameInput" placeholder='Enter Your Name' />
           <label htmlFor="emailInput">Email Address</label>
-          <input required onChange={(e) => { setEmail(e.target.value) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
+          <input value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
           <label htmlFor="passInput">Password</label>
-          <input required onChange={(e) => { setPassword(e.target.value) }} type="password" id="passInput" placeholder='Enter Your Password' />
+          <input value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" id="passInput" placeholder='Enter Your Password' />
           <button onClick={signup} type='submit' className='p-1 py-2 fw-bold fs-5 rounded-3'>SIGN UP</button>
         </form>
       </div>
