@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
@@ -13,6 +13,8 @@ const Signup = () => {
     width: "400px",
     display: 'none'
   });
+
+  const navigate = useNavigate();
 
   const signup = async (e) => {
     e.preventDefault();
@@ -35,8 +37,8 @@ const Signup = () => {
           backgroundColor: 'blueviolet',
           width: "400px",
           display: 'block'
-        })
-        console.log(result.authToken)
+        });
+        navigate('/');
       }
 
       if (result.error) {
@@ -67,7 +69,7 @@ const Signup = () => {
           <label htmlFor="nameInput">Name</label>
           <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" id="nameInput" placeholder='Enter Your Name' />
           <label htmlFor="emailInput">Email Address</label>
-          <input value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
+          <input value={email} onChange={(e) => { setEmail(e.target.value.toLowerCase()) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
           <label htmlFor="passInput">Password</label>
           <input value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" id="passInput" placeholder='Enter Your Password' />
           <button onClick={signup} type='submit' className='p-1 py-2 fw-bold fs-5 rounded-3'>SIGN UP</button>

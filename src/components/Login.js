@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -13,8 +13,38 @@ const Login = () => {
     display: 'none'
   });
 
-  const login = (e) => {
+  const navigate = useNavigate();
+
+  const login = async (e) => {
     e.preventDefault();
+
+    let result = await fetch('http://localhost:5000/login', {
+      method: "post",
+      body: JSON.stringify({email, password}),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    result = await result.json();
+    if(result.authToken) {
+      setLoginRes('You have logged in successfully');
+      setAlertStyle({
+        backgroundColor: 'blueviolet',
+        width: "400px",
+        display: 'block'
+      });
+
+      localStorage.setItem("token", result.authToken);
+      navigate('/');
+    } else {
+      setLoginRes('Please enter correct email or password');
+      setAlertStyle({
+        backgroundColor: 'blueviolet',
+        width: "400px",
+        display: 'block'
+      });
+    }
   }
 
   return (
@@ -24,10 +54,10 @@ const Login = () => {
       <div className='signup p-3 d-flex justify-content-center align-items-center'>
         <form className='signupform'>
           <label htmlFor="emailInput">Email Address</label>
-          <input value={email} onChange={(e) => { setEmail(e.target.value) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
+          <input value={email} onChange={(e) => { setEmail(e.target.value.toLowerCase()) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
           <label htmlFor="passInput">Password</label>
           <input value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" id="passInput" placeholder='Enter Your Password' />
-          <button onClick={login} type='submit' className='p-1 py-2 fw-bold fs-5 rounded-3'>SIGN UP</button>
+          <button onClick={login} type='submit' className='p-1 py-2 fw-bold fs-5 rounded-3'>LOG IN</button>
         </form>
       </div>
       <div className="formLast d-flex justify-content-center">
