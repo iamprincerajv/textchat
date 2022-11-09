@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -14,6 +14,13 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(localStorage.getItem('token')) {
+        navigate('/');
+    }
+    // eslint-disable-next-line
+}, [])
 
   const login = async (e) => {
     e.preventDefault();
@@ -35,6 +42,7 @@ const Login = () => {
         display: 'block'
       });
 
+      localStorage.setItem('name', result.name)
       localStorage.setItem("token", result.authToken);
       navigate('/');
     } else {

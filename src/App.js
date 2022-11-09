@@ -7,6 +7,7 @@ import Message from './components/Message';
 import PrivateComponent from './components/PrivateComponent';
 
 function App() {
+
   return (
     <>
       <Router>

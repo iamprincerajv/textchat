@@ -49,7 +49,7 @@ let data = {
 
 const authToken = jwt.sign(data, codeForJWT);
 
-res.json({authToken});
+res.json({name: user.name, authToken});
 
 })
 
@@ -84,7 +84,7 @@ app.post('/login', [
         };
 
         const authToken = jwt.sign(data, codeForJWT);
-        res.json({authToken});
+        res.json({name: user.name, authToken});
 
     } catch (error) {
         res.status(400).send("Something error occurred")
