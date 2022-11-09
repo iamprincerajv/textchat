@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { useRef } from 'react';
 
 const TextMsg = (props) => {
-    return <p className='textMsg p-2 ps-3 pe-4 mx-5 mt-1 rounded-3'>{props.msgVal}</p>
+    return <div className=' mt-2 d-flex'>
+        <p style={{fontSize: '15px'}} className='mx-5 ps-2'>{localStorage.getItem('name')}</p>
+        <p className='textMsg p-2 ps-3 pe-4 mx-3 rounded-3'>{props.msgVal}</p>
+    </div>
 }
 
 const Message = () => {
