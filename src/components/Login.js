@@ -42,7 +42,8 @@ const Login = () => {
         display: 'block'
       });
 
-      localStorage.setItem('name', result.name)
+      localStorage.setItem('name', result.name);
+      localStorage.setItem('username', result.username);
       localStorage.setItem("token", result.authToken);
       navigate('/');
     } else {

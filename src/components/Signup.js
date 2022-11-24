@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const Signup = () => {
 
   const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signpRes, setSignupRes] = useState('');
@@ -26,10 +27,10 @@ const Signup = () => {
   const signup = async (e) => {
     e.preventDefault();
 
-    if (name.length>2 && email && password.length>5) {
+    if (name.length>2 && username.length>2 && email && password.length>5) {
       let result = await fetch('http://localhost:5000/signup', {
         method: 'post',
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, username, email, password }),
         headers: {
           "Content-Type": "application/json"
         }
@@ -39,6 +40,7 @@ const Signup = () => {
 
       if (result.authToken) {
         localStorage.setItem('name', result.name);
+        localStorage.setItem("username", result.username);
         localStorage.setItem('token', result.authToken);
         setSignupRes('You have successfully signed up!');
         setAlertStyle({
@@ -76,6 +78,8 @@ const Signup = () => {
         <form className='signupform'>
           <label htmlFor="nameInput">Name</label>
           <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" id="nameInput" placeholder='Enter Your Name' />
+          <label htmlFor="usernameInput">Username</label>
+          <input value={username} onChange={(e) => { setUsername(e.target.value) }} type="text" id="usernameInput" placeholder='Enter a username' />
           <label htmlFor="emailInput">Email Address</label>
           <input value={email} onChange={(e) => { setEmail(e.target.value.toLowerCase()) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
           <label htmlFor="passInput">Password</label>

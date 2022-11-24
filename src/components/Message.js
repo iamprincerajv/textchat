@@ -15,11 +15,25 @@ const Message = () => {
 
     const ref = useRef(null);
 
-    const sendMsg = () => {
+    const sendMsg = async () => {
         if (msgVal.length > 0) {
             setMsg(msg.concat(<TextMsg msgVal={msgVal} key={msg.length} />));
             setMsgVal('');
             ref.current.focus();
+
+            let username = localStorage.getItem("username");
+
+            let result = await fetch("http://localhost:5000/sendMsg", {
+                method: "POST",
+                body: JSON.stringify({username: username, message: msgVal}),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            result = await result.json();
+
+            console.log(result)
         } else {
             ref.current.focus()
         }
