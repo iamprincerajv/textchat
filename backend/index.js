@@ -116,4 +116,18 @@ app.post("/sendMsg", [
     res.json({ username: msg.username, msg: msg.message});
 })
 
+// GET MESSAGES
+app.get("/getMsg/:username", async (req, res)=>{
+    let result = await Msg.find({
+        '$or': [
+            {username: req.params.username}
+        ]
+    });
+    if(!result) {
+        return res.status(400).json({error: "No messages were found"})
+    }
+
+    res.json({result});
+})
+
 app.listen(5000);
