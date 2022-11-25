@@ -16,17 +16,16 @@ const Message = () => {
 
     const ref = useRef(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         getMsg();
         //eslint-disable-next-line
     }, []);
 
-    const getMsg = async ()=>{
+    const getMsg = async () => {
         let username = localStorage.getItem("username");
         let result = await fetch(`http://localhost:5000/getMsg/${username}`);
         result = await result.json();
         setMsgVal(result.result);
-        console.log(msgVal)
     }
 
     const sendMsg = async () => {
@@ -39,7 +38,7 @@ const Message = () => {
 
             let result = await fetch("http://localhost:5000/sendMsg", {
                 method: "POST",
-                body: JSON.stringify({username: username, message: msg}),
+                body: JSON.stringify({ username: username, message: msg }),
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -47,10 +46,19 @@ const Message = () => {
 
             result = await result.json();
 
-            console.log(result);
             getMsg();
         } else {
             ref.current.focus()
+        }
+    }
+
+    const deleteMsg = async (msgId)=>{
+        let result = await fetch(`http://localhost:5000/delete/${msgId}`, {
+            method: "DELETE"
+        });
+        result = await result.json();
+        if(result){
+            getMsg();
         }
     }
 
@@ -58,12 +66,13 @@ const Message = () => {
         <div style={{ height: '91vh' }}>
             <div className='messageBox'>
                 {
-                    msgVal.length>0 ? msgVal.map((items, index)=>{
+                    msgVal.length > 0 ? msgVal.map((items, index) => {
                         return <div className=' mt-2 d-flex' key={items._id}>
-                        <p style={{fontSize: '15px'}} className='mx-5 ps-2'>{localStorage.getItem('name')}</p>
-                        <p className='textMsg p-2 ps-3 pe-4 mx-3 rounded-3'>{items.message}</p>
-                    </div>
-                    }) : <p>No messages</p>
+                            <p style={{ fontSize: '15px' }} className='mx-5 ps-2 mt-1 pt-2'>{localStorage.getItem('name')}</p>
+                            <p className='textMsg p-2 ps-3 pe-4 mx-3 rounded-3'>{items.message}</p>
+                            <i onClick={()=>{deleteMsg(items._id)}} style={{cursor: "pointer"}} className="pt-2 mt-1 fa-sharp fa-solid fa-trash"></i>
+                        </div>
+                    }) : <p className='text-center'>No messages yet</p>
                 }
             </div>
             <div className='send d-flex align-items-center justify-content-center'>

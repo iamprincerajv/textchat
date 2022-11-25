@@ -130,4 +130,10 @@ app.get("/getMsg/:username", async (req, res)=>{
     res.json({result});
 })
 
+// DELETE MESSAGE
+app.delete("/delete/:id", async (req, res)=>{
+    let result = await Msg.findOneAndDelete({_id: req.params.id});
+    res.json({success: "deleted"})
+})
+
 app.listen(5000);
