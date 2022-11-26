@@ -136,4 +136,10 @@ app.delete("/delete/:id", async (req, res)=>{
     res.json({success: "deleted"})
 })
 
+// GET USERS
+app.get('/getUsers', async (req, res)=>{
+    let result = await User.find();
+    res.send(result);
+})
+
 app.listen(5000);

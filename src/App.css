@@ -19,6 +19,7 @@ header p {
   font-weight: bolder;
 }
 
+/* Message component */
 .messageBox {
   height: 90%;
   padding: 54px;
@@ -58,7 +59,7 @@ header p {
   margin-left: 10px !important;
 }
 
-/* sign up */
+/* sign up & Login */
 .signupform input{
   display: block;
   padding: 10px;
@@ -94,4 +95,43 @@ header p {
 
 a {
   text-decoration: none;
+}
+
+/* Friends Component */
+.friendsForm input {
+  width: 400px;
+ background-color: rgba(62, 53, 53, 0.521);
+ border: 0.5px solid blueviolet;
+ border-radius: 5px;
+ outline: none;
+}
+
+.friendsForm input:focus {
+  border: 0.5px solid white;
+  background-color: black;
+}
+
+.friendsForm button {
+  background-color: blueviolet;
+  color: white;
+  border-radius: 5px;
+}
+
+.friendsList {
+  width: 500px;
+}
+
+.friendsItem {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+  border-radius: 5px;
+  background-color: blueviolet;
+}
+
+.friendsItem:hover {
+  background-color: black;
+  border: 0.5px solid blueviolet;
+  color: white;
+  cursor: pointer;
 }
