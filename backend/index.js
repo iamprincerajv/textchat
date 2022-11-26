@@ -123,11 +123,11 @@ app.get("/getMsg/:username", async (req, res)=>{
             {username: req.params.username}
         ]
     });
-    if(!result) {
-        return res.status(400).json({error: "No messages were found"})
+    if(result.length > 0) {
+        res.send(result);
+    } else {
+        res.send({error: "No messages were found"});
     }
-
-    res.json({result});
 })
 
 // DELETE MESSAGE

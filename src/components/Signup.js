@@ -19,7 +19,7 @@ const Signup = () => {
 
   useEffect(()=>{
     if(localStorage.getItem('token')) {
-        navigate('/');
+        navigate('/message');
     }
     // eslint-disable-next-line
 }, [])
@@ -48,7 +48,7 @@ const Signup = () => {
           width: "400px",
           display: 'block'
         });
-        navigate('/');
+        navigate('/message');
       }
 
       if (result.error) {

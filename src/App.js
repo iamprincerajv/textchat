@@ -5,6 +5,7 @@ import Signup from './components/Signup';
 import Header from './components/Header';
 import Message from './components/Message';
 import PrivateComponent from './components/PrivateComponent';
+import Friends from './components/Friends';
 
 function App() {
 
@@ -16,7 +17,8 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route element={<PrivateComponent />}>
-            <Route path='/' element={<Message />} />
+            <Route path='/' element={<Friends />} />
+            <Route path='/message' element={<Message />} />
           </Route>
         </Routes>
       </Router>

@@ -25,11 +25,11 @@ const Message = () => {
         let username = localStorage.getItem("username");
         let result = await fetch(`http://localhost:5000/getMsg/${username}`);
         result = await result.json();
-        setMsgVal(result.result);
+        setMsgVal(result);
     }
 
     const sendMsg = async () => {
-        if (msgVal.length > 0) {
+        if (msg.length > 0) {
             // setMsg(msg.concat(<TextMsg msgVal={msgVal} key={msg.length} />));
             setMsg('');
             ref.current.focus();
@@ -48,7 +48,7 @@ const Message = () => {
 
             getMsg();
         } else {
-            ref.current.focus()
+            ref.current.focus();
         }
     }
 
