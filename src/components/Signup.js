@@ -19,7 +19,7 @@ const Signup = () => {
 
   useEffect(()=>{
     if(localStorage.getItem('token')) {
-        navigate('/message');
+        navigate('/');
     }
     // eslint-disable-next-line
 }, [])
@@ -48,7 +48,7 @@ const Signup = () => {
           width: "400px",
           display: 'block'
         });
-        navigate('/message');
+        navigate('/');
       }
 
       if (result.error) {
@@ -79,7 +79,7 @@ const Signup = () => {
           <label htmlFor="nameInput">Name</label>
           <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" id="nameInput" placeholder='Enter Your Name' />
           <label htmlFor="usernameInput">Username</label>
-          <input value={username} onChange={(e) => { setUsername(e.target.value) }} type="text" id="usernameInput" placeholder='Enter a username' />
+          <input value={username} onChange={(e) => { setUsername(e.target.value.toLowerCase()) }} type="text" id="usernameInput" placeholder='Enter a username' />
           <label htmlFor="emailInput">Email Address</label>
           <input value={email} onChange={(e) => { setEmail(e.target.value.toLowerCase()) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
           <label htmlFor="passInput">Password</label>

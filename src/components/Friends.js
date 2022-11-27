@@ -17,25 +17,39 @@ const Friends = () => {
         setUsers(result);
     }
 
+    const search = async (e) => {
+        let key = e.target.value;
+
+        if (key) {
+            let result = await fetch(`http://localhost:5000/search/${key}`);
+            result = await result.json();
+
+            if (result) {
+                setUsers(result);
+            }
+        } else {
+            getUsers();
+        }
+    }
+
     return (
         <>
             <form className='friendsForm text-center mt-5'>
-                <input className='ps-4 pe-5 py-2 me-1' type="text" placeholder='Search for a friend' />
-                <button className='p-2 px-3 bolder' type='submit' onClick={getUsers}>GO</button>
+                <input onChange={search} autoFocus className='ps-4 pe-5 py-2 me-1' type="text" placeholder='Search for a friend' />
             </form>
 
             <center>
                 <div className='friendsList mt-5'>
                     {
                         users.length > 0 ? users.map((items, index) => {
-                            return <div className='p-2 ps-4 py-3 friendsItem' key={items._id}>
+                            return <div className='p-2 ps-4 py-3 mb-1 friendsItem' key={items._id}>
                                 <i className="fa-solid fa-user fa-2xl me-4 mt-3 pt-1"></i>
                                 <div className='d-block'>
                                     <p className='bolder'>{items.name}</p>
-                                    <p style={{fontSize: "10px"}}>{items.username}</p>
+                                    <p style={{ fontSize: "10px" }}>{items.username}</p>
                                 </div>
                             </div>
-                        }) : <p>No users</p>
+                        }) : <p>No user with this search term</p>
                     }
                 </div>
             </center>

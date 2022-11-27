@@ -142,4 +142,16 @@ app.get('/getUsers', async (req, res)=>{
     res.send(result);
 })
 
+// SEARCH USER
+app.get("/search/:key", async (req, res)=>{
+    let result = await User.find({
+        '$or': [
+            {username: { $regex: req.params.key}},
+            {name: { $regex: req.params.key}}
+        ]
+    });
+
+    res.send(result);
+})
+
 app.listen(5000);

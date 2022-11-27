@@ -21,9 +21,19 @@ header p {
 
 /* Message component */
 .messageBox {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+
   height: 90%;
   padding: 54px;
   overflow: auto;
+}
+
+.messageBox::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 
 .textMsg {
@@ -101,6 +111,7 @@ a {
 .friendsForm input {
   width: 400px;
  background-color: rgba(62, 53, 53, 0.521);
+ color: white;
  border: 0.5px solid blueviolet;
  border-radius: 5px;
  outline: none;
@@ -111,14 +122,20 @@ a {
   background-color: black;
 }
 
-.friendsForm button {
-  background-color: blueviolet;
-  color: white;
-  border-radius: 5px;
+.friendsList {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+
+  width: 500px;
+  height: 73vh;
+  overflow: auto;
 }
 
-.friendsList {
-  width: 500px;
+.friendsList::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 
 .friendsItem {

@@ -17,7 +17,7 @@ const Login = () => {
 
   useEffect(()=>{
     if(localStorage.getItem('token')) {
-        navigate('/message');
+        navigate('/');
     }
     // eslint-disable-next-line
 }, [])
@@ -45,7 +45,7 @@ const Login = () => {
       localStorage.setItem('name', result.name);
       localStorage.setItem('username', result.username);
       localStorage.setItem("token", result.authToken);
-      navigate('/message');
+      navigate('/');
     } else {
       setLoginRes('Please enter correct email or password');
       setAlertStyle({
