@@ -1,10 +1,12 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Friends = () => {
 
     const [users, setUsers] = useState("");
+    const navigate = useNavigate("");
 
     useEffect(() => {
         getUsers();
@@ -32,6 +34,11 @@ const Friends = () => {
         }
     }
 
+    const chatWithF = (username)=>{
+        localStorage.setItem("friendToChat", username);
+        navigate("/message");
+    }
+
     return (
         <>
             <form className='friendsForm text-center mt-5'>
@@ -42,7 +49,7 @@ const Friends = () => {
                 <div className='friendsList mt-5'>
                     {
                         users.length > 0 ? users.map((items, index) => {
-                            return <div className='p-2 ps-4 py-3 mb-1 friendsItem' key={items._id}>
+                            return <div onClick={()=>{chatWithF(items.username)}} className='p-2 ps-4 py-3 mb-1 friendsItem' key={items._id}>
                                 <i className="fa-solid fa-user fa-2xl me-4 mt-3 pt-1"></i>
                                 <div className='d-block'>
                                     <p className='bolder'>{items.name}</p>
