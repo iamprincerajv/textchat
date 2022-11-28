@@ -20,6 +20,13 @@ header p {
 }
 
 /* Message component */
+.friendToChat {
+  background-color: blueviolet;
+  width: fit-content;
+  min-width: 100px;
+  text-align: left;
+}
+
 .messageBox {
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */

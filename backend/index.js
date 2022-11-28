@@ -101,7 +101,8 @@ app.post('/login', [
 // SEND MESSAGES
 app.post("/sendMsg", [
     body('username', 'Username could not be found').exists(),
-    body('message', 'Message cannot be empty').exists()
+    body('messageMe', 'Message cannot be empty').exists(),
+    body('friendToChat', 'Receiver could not be found').exists()
 ], async (req, res)=>{
     let errors = validationResult(req);
     if(!errors.isEmpty()) {
@@ -110,17 +111,20 @@ app.post("/sendMsg", [
 
     let msg = await Msg.create({
         username: req.body.username,
-        message: req.body.message
+        messageMe: req.body.messageMe,
+        friendToChat: req.body.friendToChat,
+        friendToChatName: req.body.friendToChatName
     });
 
-    res.json({ username: msg.username, msg: msg.message});
+    res.json({ username: msg.username, msg: msg.messageMe, friendToChat: msg.friendToChat, friendToChatName: msg.friendToChatName});
 })
 
 // GET MESSAGES
-app.get("/getMsg/:username", async (req, res)=>{
+app.get("/getMsg/:username/:friendToChat", async (req, res)=>{
     let result = await Msg.find({
         '$or': [
-            {username: req.params.username}
+            {username: req.params.username},
+            {friendToChat: req.params.friendToChat}
         ]
     });
     if(result.length > 0) {

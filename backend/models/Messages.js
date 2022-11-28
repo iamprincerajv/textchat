@@ -6,7 +6,15 @@ const messages = new Schema({
         type: String,
         required: true
     },
-    message: {
+    messageMe: {
+        type: String,
+        required: true
+    },
+    friendToChat:{
+        type: String,
+        required: true
+    },
+    friendToChatName:{
         type: String,
         required: true
     }

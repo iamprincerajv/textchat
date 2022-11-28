@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // const TextMsg = (props) => {
 //     return <div className=' mt-2 d-flex'>
@@ -13,17 +14,22 @@ const Message = () => {
 
     const [msgVal, setMsgVal] = useState([]);
     const [msg, setMsg] = useState([]);
+    const navigate = useNavigate("");
 
     const ref = useRef(null);
 
     useEffect(() => {
+        if (!localStorage.getItem("friendToChat")) {
+            navigate("/");
+        }
         getMsg();
         //eslint-disable-next-line
     }, []);
 
     const getMsg = async () => {
         let username = localStorage.getItem("username");
-        let result = await fetch(`http://localhost:5000/getMsg/${username}`);
+        let friendToChat = localStorage.getItem("friendToChat");
+        let result = await fetch(`http://localhost:5000/getMsg/${username}/${friendToChat}`);
         result = await result.json();
         setMsgVal(result);
     }
@@ -38,13 +44,14 @@ const Message = () => {
 
             let result = await fetch("http://localhost:5000/sendMsg", {
                 method: "POST",
-                body: JSON.stringify({ username: username, message: msg }),
+                body: JSON.stringify({ username: username, messageMe: msg, friendToChat: "kkofficial", friendToChatName: "Kanikka" }),
                 headers: {
                     "Content-Type": "application/json"
                 }
             });
 
             result = await result.json();
+            console.log(result)
 
             getMsg();
         } else {
@@ -52,12 +59,12 @@ const Message = () => {
         }
     }
 
-    const deleteMsg = async (msgId)=>{
+    const deleteMsg = async (msgId) => {
         let result = await fetch(`http://localhost:5000/delete/${msgId}`, {
             method: "DELETE"
         });
         result = await result.json();
-        if(result){
+        if (result) {
             getMsg();
         }
     }
@@ -69,8 +76,8 @@ const Message = () => {
                     msgVal.length > 0 ? msgVal.map((items, index) => {
                         return <div className=' mt-2 d-flex' key={items._id}>
                             <p style={{ fontSize: '15px' }} className='mx-5 ps-2 mt-1 pt-2'>{localStorage.getItem('name')}</p>
-                            <p className='textMsg p-2 ps-3 pe-4 mx-3 rounded-3'>{items.message}</p>
-                            <i onClick={()=>{deleteMsg(items._id)}} style={{cursor: "pointer"}} className="pt-2 mt-1 fa-sharp fa-solid fa-trash"></i>
+                            <p className='textMsg p-2 ps-3 pe-4 mx-3 rounded-3'>{items.messageMe}</p>
+                            <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer" }} className="pt-2 mt-1 fa-sharp fa-solid fa-trash"></i>
                         </div>
                     }) : <p className='text-center'>No messages yet</p>
                 }
