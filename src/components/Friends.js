@@ -11,7 +11,7 @@ const Friends = () => {
     useEffect(() => {
         getUsers();
 
-        if(localStorage.getItem("friendToChat")) {
+        if (localStorage.getItem("friendToChat")) {
             localStorage.removeItem("friendToChat");
             localStorage.removeItem("friendToChatName");
         }
@@ -39,10 +39,14 @@ const Friends = () => {
         }
     }
 
-    const chatWithF = (username, name)=>{
-        localStorage.setItem("friendToChat", username);
-        localStorage.setItem("friendToChatName", name);
-        navigate("/message");
+    const chatWithF = (username, name) => {
+        if (username === localStorage.getItem("username")) {
+            
+        } else {
+            localStorage.setItem("friendToChat", username);
+            localStorage.setItem("friendToChatName", name);
+            navigate("/message");
+        }
     }
 
     return (
@@ -55,10 +59,12 @@ const Friends = () => {
                 <div className='friendsList mt-5'>
                     {
                         users.length > 0 ? users.map((items, index) => {
-                            return <div onClick={()=>{chatWithF(items.username, items.name)}} className='p-2 ps-4 py-3 mb-1 friendsItem' key={items._id}>
+                            return <div onClick={() => { chatWithF(items.username, items.name) }} className='p-2 ps-4 py-3 mb-1 friendsItem' key={items._id}>
                                 <i className="fa-solid fa-user fa-2xl me-4 mt-3 pt-1"></i>
                                 <div className='d-block'>
-                                    <p className='bolder'>{items.name}</p>
+                                    <p className='bolder'>{
+                                    items.username === localStorage.getItem("username") ? "You" : items.name
+                                    }</p>
                                     <p style={{ fontSize: "10px" }}>{items.username}</p>
                                 </div>
                             </div>
