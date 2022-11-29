@@ -10,6 +10,11 @@ const Friends = () => {
 
     useEffect(() => {
         getUsers();
+
+        if(localStorage.getItem("friendToChat")) {
+            localStorage.removeItem("friendToChat");
+            localStorage.removeItem("friendToChatName");
+        }
         // eslint-disable-next-line
     }, [])
 
