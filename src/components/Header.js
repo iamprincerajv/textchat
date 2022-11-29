@@ -28,7 +28,7 @@ const Header = () => {
       </div>
       {location.pathname === "/" ? <Link to='/login' style={{ color: 'white', backgroundColor: 'blueviolet' }} className='me-5 p-1 px-3 rounded-3 bold' onClick={logOut}>{localStorage.getItem('name')} - Log Out</Link> : ""}
 
-      {location.pathname === "/message" ? <div style={{ color: 'white', backgroundColor: 'blueviolet' }} className='me-5 p-1 px-3 rounded-3 bold'>{localStorage.getItem('friendToChatName')} ({localStorage.getItem("friendToChat")}) </div> : ""}
+      {location.pathname === "/message" ? <div onClick={backHome} style={{ color: 'white', backgroundColor: 'blueviolet' }} className='me-5 p-1 px-3 rounded-3 bold'>{localStorage.getItem('friendToChatName')} ({localStorage.getItem("friendToChat")}) </div> : ""}
     </header>
   )
 }

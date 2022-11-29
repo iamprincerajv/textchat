@@ -22,7 +22,9 @@ const Message = () => {
         if (!localStorage.getItem("friendToChat")) {
             navigate("/");
         }
-        getMsg();
+        setInterval(()=>{
+            getMsg();
+        }, 100)
         //eslint-disable-next-line
     }, []);
 
@@ -44,7 +46,7 @@ const Message = () => {
 
             let result = await fetch("http://localhost:5000/sendMsg", {
                 method: "POST",
-                body: JSON.stringify({ username: username, messageMe: msg, friendToChat: "kkofficial", friendToChatName: "Kanikka" }),
+                body: JSON.stringify({ username: username, messageMe: msg, friendToChat: localStorage.getItem("friendToChat"), friendToChatName: localStorage.getItem("friendToChatName")}),
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -75,9 +77,11 @@ const Message = () => {
                 {
                     msgVal.length > 0 ? msgVal.map((items, index) => {
                         return <div className=' mt-2 d-flex' key={items._id}>
-                            <p style={{ fontSize: '15px' }} className='mx-5 ps-2 mt-1 pt-2'>{localStorage.getItem('name')}</p>
+                            <p style={{ fontSize: '15px', width: "200px"}} className='ms-5 ps-2 mt-1 pt-2'>{items.username}</p>
                             <p className='textMsg p-2 ps-3 pe-4 mx-3 rounded-3'>{items.messageMe}</p>
-                            <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer" }} className="pt-2 mt-1 fa-sharp fa-solid fa-trash"></i>
+                            {
+                                items.username===localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer" }} className="pt-2 mt-1 fa-sharp fa-solid fa-trash"></i> : ""
+                            }
                         </div>
                     }) : <p className='text-center'>No messages yet</p>
                 }

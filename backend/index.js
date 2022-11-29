@@ -122,10 +122,8 @@ app.post("/sendMsg", [
 // GET MESSAGES
 app.get("/getMsg/:username/:friendToChat", async (req, res)=>{
     let result = await Msg.find({
-        '$or': [
-            {username: req.params.username},
-            {friendToChat: req.params.friendToChat}
-        ]
+        "username": { "$in" : [req.params.username, req.params.friendToChat]},
+        "friendToChat": { "$in" : [req.params.username, req.params.friendToChat]}
     });
     if(result.length > 0) {
         res.send(result);
