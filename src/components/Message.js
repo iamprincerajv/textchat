@@ -71,47 +71,42 @@ const Message = () => {
         }
     }
 
-    const showMore = () => {
-        let msgClick = document.querySelector(".textMsg");
-        let delBtn = document.querySelector(".fa-trash");
-
-        console.log(msgClick)
-        if (msgClick.classList.contains("msgClick")) {
-            console.log(delBtn);
-            delBtn.style.display = "block";
-            msgClick.classList.remove("msgClick");
-        } else {
-            console.log(delBtn);
-            delBtn.style.display = "none";
-            msgClick.classList.add("msgClick");
+    const showMore = async (id) => {
+        let delBtn = document.getElementById(id);
+        if(delBtn) {
+            if(delBtn.style.display === "none") {
+                delBtn.style.display = "block";
+            } else if(delBtn.style.display === "block") {
+                delBtn.style.display = "none";
+            }
         }
     }
 
-    return (
-        <div style={{ height: '91vh' }}>
-            <div className='messageBox'>
-                {
-                    msgVal.length > 0 ? msgVal.map((items, index) => {
-                        return <div className=' mt-2 d-flex' key={items._id}>
-                            <p style={{ fontSize: '15px', width: "200px" }} className='ms-5 ps-2 mt-1 pt-2'>{items.username}</p>
-                            <p onClick={showMore} className='textMsg p-2 ps-3 pe-4 mx-3 rounded-3 msgClick'>{items.messageMe}</p>
-                            {
-                                items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className="pt-2 mt-1 fa-sharp fa-solid fa-trash"></i> : ""
-                            }
-                        </div>
-                    }) : <p className='text-center'>No messages yet</p>
-                }
-            </div>
-            <div className='send d-flex align-items-center justify-content-center'>
-                <form className='d-flex justify-content-center'>
-                    <input ref={ref} value={msg} type="text" placeholder='Enter Your Message Here' autoFocus onChange={(e) => { setMsg(e.target.value) }} />
-                    <div type="submit" onClick={sendMsg} className="sendBtn">
-                        <i className="fa-solid fa-paper-plane fa-2x"></i>
+return (
+    <div style={{ height: '91vh' }}>
+        <div className='messageBox'>
+            {
+                msgVal.length > 0 ? msgVal.map((items, index) => {
+                    return <div className=' mt-2 d-flex' key={items._id}>
+                        <p style={{ fontSize: '15px', width: "200px" }} className='ms-2 ms-lg-5 ms-sm-3 ms-md-4 ps-2 mt-1 pt-2'>{items.username}</p>
+                        <p onClick={()=>{showMore(items._id)}} className='textMsg p-2 ps-3 pe-4 mx-3 rounded-3 msgClick'>{items.messageMe}</p>
+                        {
+                            items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
+                        }
                     </div>
-                </form>
-            </div>
+                }) : <p className='text-center'>No messages yet</p>
+            }
         </div>
-    )
+        <div className='send d-flex align-items-center justify-content-center'>
+            <form className='d-flex justify-content-center'>
+                <input ref={ref} value={msg} type="text" placeholder='Enter Your Message Here' autoFocus onChange={(e) => { setMsg(e.target.value) }} />
+                <div type="submit" onClick={sendMsg} className="sendBtn">
+                    <i className="fa-solid fa-paper-plane fa-2x"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+)
 }
 
 export default Message

@@ -45,7 +45,8 @@ header p {
 
 .textMsg {
   background-color: blueviolet;
-  width: fit-content;
+  width: auto;
+  height: a;
   min-width: 100px;
 }
 
