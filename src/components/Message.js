@@ -97,8 +97,8 @@ return (
                 }) : <p className='text-center'>No messages yet</p>
             }
         </div>
-        <div className='send d-flex align-items-center justify-content-center'>
-            <form className='d-flex justify-content-center'>
+        <div className='send d-flex align-items-center justify-content-center row'>
+            <form className='d-flex justify-content-center col-xl-4 col-lg-6 col-md-7 col-sm-8'>
                 <input ref={ref} value={msg} type="text" placeholder='Enter Your Message Here' autoFocus onChange={(e) => { setMsg(e.target.value) }} />
                 <div type="submit" onClick={sendMsg} className="sendBtn">
                     <i className="fa-solid fa-paper-plane fa-2x"></i>

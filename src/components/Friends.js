@@ -41,7 +41,7 @@ const Friends = () => {
 
     const chatWithF = (username, name) => {
         if (username === localStorage.getItem("username")) {
-            
+
         } else {
             localStorage.setItem("friendToChat", username);
             localStorage.setItem("friendToChatName", name);
@@ -50,29 +50,36 @@ const Friends = () => {
     }
 
     return (
-        <>
-            <form className='friendsForm text-center mt-5'>
-                <input onChange={search} autoFocus className='ps-4 pe-5 py-2 me-1' type="text" placeholder='Search for a friend' />
-            </form>
+        <div>
+            <div className='row'>
+                <center>
+                    <form className='friendsForm mt-5 col-lg-4 col-xl-3 col-md-5 col-sm-6 col-8'>
+                        <input onChange={search} autoFocus className='ps-4 pe-5 py-2 me-1' type="text" placeholder='Search for a friend' />
+                    </form>
+                </center>
+            </div>
 
-            <center>
-                <div className='friendsList mt-5'>
-                    {
-                        users.length > 0 ? users.map((items, index) => {
-                            return <div onClick={() => { chatWithF(items.username, items.name) }} className='p-2 ps-4 py-3 mb-1 friendsItem' key={items._id}>
-                                <i className="fa-solid fa-user fa-2xl me-4 mt-3 pt-1"></i>
-                                <div className='d-block'>
-                                    <p className='bolder'>{
-                                    items.username === localStorage.getItem("username") ? "You" : items.name
-                                    }</p>
-                                    <p style={{ fontSize: "10px" }}>{items.username}</p>
+
+            <div className='row'>
+                <center>
+                    <div className='friendsList mt-5 col-xl-4 col-lg-6 col-md-7 col-sm-8 col-11'>
+                        {
+                            users.length > 0 ? users.map((items, index) => {
+                                return <div onClick={() => { chatWithF(items.username, items.name) }} className='p-2 ps-4 py-3 mb-1 friendsItem' key={items._id}>
+                                    <i className="fa-solid fa-user fa-2xl me-4 mt-3 pt-1"></i>
+                                    <div className='d-block'>
+                                        <p className='bolder'>{
+                                            items.username === localStorage.getItem("username") ? "You" : items.name
+                                        }</p>
+                                        <p style={{ fontSize: "10px" }}>{items.username}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        }) : <p>No user with this search term</p>
-                    }
-                </div>
-            </center>
-        </>
+                            }) : <p>No user with this search term</p>
+                        }
+                    </div>
+                </center>
+            </div>
+        </div>
     )
 }
 
