@@ -15,26 +15,26 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(localStorage.getItem('token')) {
-        navigate('/');
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/');
     }
     // eslint-disable-next-line
-}, [])
+  }, [])
 
   const login = async (e) => {
     e.preventDefault();
 
     let result = await fetch('http://localhost:5000/login', {
       method: "post",
-      body: JSON.stringify({email, password}),
+      body: JSON.stringify({ email, password }),
       headers: {
         "Content-Type": "application/json"
       }
     });
 
     result = await result.json();
-    if(result.authToken) {
+    if (result.authToken) {
       setLoginRes('You have logged in successfully');
       setAlertStyle({
         backgroundColor: 'blueviolet',
@@ -57,11 +57,11 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div>
       <h4 className='text-center mt-5 mb-4 bolder'>LOG IN</h4>
       <p className='p-2 ps-4 rounded-3 mx-auto' style={alertStyle}>{loginRes}</p>
-      <div className='signup p-3 d-flex justify-content-center align-items-center'>
-        <form className='signupform'>
+      <div className='signup p-3 d-flex justify-content-center align-items-center row'>
+        <form className='signupform col-xl-4 col-lg-5 col-md-6 col-sm-8 col-10'>
           <label htmlFor="emailInput">Email Address</label>
           <input value={email} onChange={(e) => { setEmail(e.target.value.toLowerCase()) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
           <label htmlFor="passInput">Password</label>
@@ -69,10 +69,12 @@ const Login = () => {
           <button onClick={login} type='submit' className='p-1 py-2 fw-bold fs-5 rounded-3'>LOG IN</button>
         </form>
       </div>
-      <div className="formLast d-flex justify-content-center">
-        <p className='me-2'>Already have an account? </p> <Link to='/signup'>Sign Up</Link>
-      </div>
-    </>
+      <center>
+        <div className="formLast d-flex justify-content-center col-xl-4 col-lg-5 col-md-6 col-sm-8 col-10">
+          <p className='me-2'>Already have an account? </p> <Link to='/signup'>Sign Up</Link>
+        </div>
+      </center>
+    </div>
   )
 }
 

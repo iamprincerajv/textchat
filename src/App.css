@@ -82,7 +82,7 @@ header p {
   display: block;
   padding: 10px;
   padding-left: 20px;
-  width: 400px;
+  width: 100%;
   background-color: rgba(62, 53, 53, 0.521);
   color: white;
   border: none;
@@ -102,7 +102,7 @@ header p {
 }
 
 .signupform button {
-  width: 400px;
+  width: 100%;
   background-color: blueviolet;
   color: white;
 }
