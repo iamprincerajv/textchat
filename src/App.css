@@ -45,9 +45,13 @@ header p {
 
 .textMsg {
   background-color: blueviolet;
-  width: auto;
-  height: a;
+  width: fit-content;
+  height: fit-content;
   min-width: 100px;
+  max-width: 75%;
+  white-space: break-spaces;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .send {

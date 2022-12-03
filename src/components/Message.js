@@ -89,7 +89,7 @@ return (
                 msgVal.length > 0 ? msgVal.map((items, index) => {
                     return <div className=' mt-2 d-flex' key={items._id}>
                         <p style={{ fontSize: '15px', width: "200px" }} className='ms-2 ms-lg-5 ms-sm-3 ms-md-4 ps-2 mt-1 pt-2'>{items.username}</p>
-                        <p onClick={()=>{showMore(items._id)}} className='textMsg p-2 ps-3 pe-4 mx-3 rounded-3 msgClick'>{items.messageMe}</p>
+                        <p onClick={()=>{showMore(items._id)}} className='textMsg p-2 ps-3 pe-3 mx-3 rounded-3'>{items.messageMe}</p>
                         {
                             items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
                         }
