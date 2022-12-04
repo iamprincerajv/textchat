@@ -82,7 +82,7 @@ header p {
 }
 
 /* sign up & Login */
-.signupform input{
+.signupform input {
   display: block;
   padding: 10px;
   padding-left: 20px;
@@ -122,11 +122,11 @@ a {
 /* Friends Component */
 .friendsForm input {
   width: 100%;
- background-color: rgba(62, 53, 53, 0.521);
- color: white;
- border: 0.5px solid blueviolet;
- border-radius: 5px;
- outline: none;
+  background-color: rgba(62, 53, 53, 0.521);
+  color: white;
+  border: 0.5px solid blueviolet;
+  border-radius: 5px;
+  outline: none;
 }
 
 .friendsForm input:focus {
@@ -150,16 +150,17 @@ a {
 }
 
 .friendsItem {
-  display: flex;
-  justify-content: left;
   text-align: left;
   border-radius: 5px;
   background-color: blueviolet;
+  height: fit-content;
+  min-height: 135px;
+  min-width: 100px;
+  cursor: pointer;
 }
 
 .friendsItem:hover {
   background-color: black;
   border: 0.5px solid blueviolet;
   color: white;
-  cursor: pointer;
 }

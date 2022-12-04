@@ -62,12 +62,12 @@ const Friends = () => {
 
             <div className='row'>
                 <center>
-                    <div className='friendsList mt-5 col-xl-4 col-lg-6 col-md-7 col-sm-8 col-11'>
+                    <div className='friendsList d-flex justify-content-between row mt-5 col-xl-4 col-lg-6 col-md-7 col-sm-8 col-11'>
                         {
                             users.length > 0 ? users.map((items, index) => {
-                                return <div onClick={() => { chatWithF(items.username, items.name) }} className='p-2 ps-4 py-3 mb-1 friendsItem' key={items._id}>
-                                    <i className="fa-solid fa-user fa-2xl me-4 mt-3 pt-1"></i>
-                                    <div className='d-block'>
+                                return <div onClick={() => { chatWithF(items.username, items.name) }} className='col-5 col-sm-3 mx-1 p-3 mb-3 text-center friendsItem' key={items._id}>
+                                    <i className="fa-solid fa-user fa-3x my-2"></i>
+                                    <div className='d-block text-start'>
                                         <p className='bolder'>{
                                             items.username === localStorage.getItem("username") ? "You" : items.name
                                         }</p>
