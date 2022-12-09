@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const connectDB = () => {
-    mongoose.connect('mongodb://localhost:27017/hellochat', () => {
+    mongoose.connect('mongodb+srv://iamprincerajv:731790@cluster0.vikr26b.mongodb.net/helloChat', () => {
         console.log('database connected successfully');
     })
 }
