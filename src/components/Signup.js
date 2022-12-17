@@ -28,7 +28,7 @@ const Signup = () => {
     e.preventDefault();
 
     if (name.length > 2 && username.length > 2 && email && password.length > 5) {
-      let result = await fetch('http://localhost:5000/signup', {
+      let result = await fetch('http://13.233.193.253:5000/signup', {
         method: 'post',
         body: JSON.stringify({ name, username, email, password }),
         headers: {

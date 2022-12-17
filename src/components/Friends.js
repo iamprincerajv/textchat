@@ -19,7 +19,7 @@ const Friends = () => {
     }, [])
 
     const getUsers = async () => {
-        let result = await fetch("http://localhost:5000/getUsers");
+        let result = await fetch("http://13.233.193.253:5000/getUsers");
         result = await result.json();
         setUsers(result);
     }
@@ -28,7 +28,7 @@ const Friends = () => {
         let key = e.target.value;
 
         if (key) {
-            let result = await fetch(`http://localhost:5000/search/${key}`);
+            let result = await fetch(`http://13.233.193.253:5000/search/${key}`);
             result = await result.json();
 
             if (result) {
