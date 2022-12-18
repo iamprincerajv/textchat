@@ -54,7 +54,7 @@ const Friends = () => {
             <div className='row'>
                 <center>
                     <form className='friendsForm mt-5 col-lg-4 col-xl-3 col-md-5 col-sm-6 col-8'>
-                        <input onChange={search} autoFocus className='ps-4 pe-5 py-2 me-1' type="text" placeholder='Search for a friend' />
+                        <input onChange={search} className='ps-4 pe-5 py-2 me-1' type="text" placeholder='Search for a friend' />
                     </form>
                 </center>
             </div>
