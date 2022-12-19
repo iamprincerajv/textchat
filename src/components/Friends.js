@@ -50,7 +50,7 @@ const Friends = () => {
     }
 
     return (
-        <div>
+        <div style={{position: "fixed", top: "8vh", width: "100%"}}>
             <div className='row'>
                 <center>
                     <form className='friendsForm mt-5 col-lg-4 col-xl-3 col-md-5 col-sm-6 col-8'>
@@ -59,26 +59,23 @@ const Friends = () => {
                 </center>
             </div>
 
-
-            <div className='row'>
-                <center>
-                    <div className='friendsList d-flex justify-content-between row mt-5 col-xl-4 col-lg-6 col-md-7 col-sm-8 col-11'>
-                        {
-                            users.length > 0 ? users.map((items, index) => {
-                                return <div onClick={() => { chatWithF(items.username, items.name) }} className='col-5 col-sm-3 mx-1 p-3 mb-3 text-center friendsItem' key={items._id}>
-                                    <i className="fa-solid fa-user fa-3x my-2"></i>
-                                    <div className='d-block text-start'>
-                                        <p className='bolder'>{
-                                            items.username === localStorage.getItem("username") ? "You" : items.name
-                                        }</p>
-                                        <p style={{ fontSize: "10px" }}>{items.username}</p>
-                                    </div>
+            <center>
+                <div className='friendsList mt-5 col-xl-4 col-lg-6 col-md-7 col-sm-8 col-11'>
+                    {
+                        users.length > 0 ? users.map((items, index) => {
+                            return <div onClick={() => { chatWithF(items.username, items.name) }} className='mx-1 p-3 mb-3 text-center d-flex friendsItem' key={items._id}>
+                                <i className="fa-solid fa-user fa-3x my-2 mx-2"></i>
+                                <div className='d-block text-start mx-3 my-2'>
+                                    <p className='bolder' style={{fontSize: "19px"}}>{
+                                        items.username === localStorage.getItem("username") ? "You" : items.name
+                                    }</p>
+                                    <p style={{ fontSize: "14px" }}>{items.username}</p>
                                 </div>
-                            }) : <p>No user with this search term</p>
-                        }
-                    </div>
-                </center>
-            </div>
+                            </div>
+                        }) : <p>No user with this search term</p>
+                    }
+                </div>
+            </center>
         </div>
     )
 }

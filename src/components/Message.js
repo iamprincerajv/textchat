@@ -83,7 +83,7 @@ const Message = () => {
     }
 
     return (
-        <div style={{ height: '91vh' }}>
+        <div style={{ height: '92vh', width: "100%", position: "fixed", top: "8vh" }}>
             <div className='messageBox'>
                 {
                     msgVal.length > 0 ? msgVal.map((items, index) => {

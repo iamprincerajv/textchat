@@ -71,7 +71,7 @@ const Signup = () => {
   }
 
   return (
-    <div className='row'>
+    <div className='row' style={{position: "fixed", top: "8vh", width: "100%"}}>
       <h4 className='text-center mt-5 mb-4 bolder'>SIGN UP</h4>
       <p className='p-2 ps-4 rounded-3 mx-auto' style={alertStyle}>{signpRes}</p>
       <div className='signup p-3 d-flex justify-content-center align-items-center row'>

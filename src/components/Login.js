@@ -57,7 +57,7 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div style={{position: "fixed", top: "8vh", width: "100%"}}>
       <h4 className='text-center mt-5 mb-4 bolder'>LOG IN</h4>
       <p className='p-2 ps-4 rounded-3 mx-auto' style={alertStyle}>{loginRes}</p>
       <div className='signup p-3 d-flex justify-content-center align-items-center row'>
