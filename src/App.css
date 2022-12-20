@@ -91,6 +91,21 @@ header p {
 }
 
 /* sign up & Login */
+.signup {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+
+  height: 100%;
+  overflow: auto;
+}
+
+.signup::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
+
 .signupform input {
   display: block;
   padding: 10px;

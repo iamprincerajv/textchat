@@ -27,7 +27,7 @@ const Signup = () => {
   const signup = async (e) => {
     e.preventDefault();
 
-    if (name.length > 2 && username.length > 2 && email && password.length > 5) {
+    if (name.length > 2 && username.length > 2 && username.length < 12 && email && password.length > 5 && password.length < 12) {
       let result = await fetch('http://13.233.193.253:5000/signup', {
         method: 'post',
         body: JSON.stringify({ name, username, email, password }),
@@ -45,7 +45,7 @@ const Signup = () => {
         setSignupRes('You have successfully signed up!');
         setAlertStyle({
           backgroundColor: 'blueviolet',
-          width: "400px",
+          width: "300px",
           display: 'block'
         });
         navigate('/');
@@ -55,7 +55,7 @@ const Signup = () => {
         setSignupRes(result.error);
         setAlertStyle({
           backgroundColor: 'blueviolet',
-          width: "400px",
+          width: "300px",
           display: 'block'
         })
         console.log(result.error)
@@ -64,36 +64,43 @@ const Signup = () => {
       setSignupRes('Please enter all the details correctly');
       setAlertStyle({
         backgroundColor: 'blueviolet',
-        width: "400px",
+        width: "300px",
         display: 'block'
       })
     }
   }
 
   return (
-    <div className='row' style={{position: "fixed", top: "8vh", width: "100%"}}>
-      <h4 className='text-center mt-5 mb-4 bolder'>SIGN UP</h4>
-      <p className='p-2 ps-4 rounded-3 mx-auto' style={alertStyle}>{signpRes}</p>
-      <div className='signup p-3 d-flex justify-content-center align-items-center row'>
-        <form className='signupform col-xl-4 col-lg-5 col-md-6 col-sm-8 col-10'>
-          <label htmlFor="nameInput">Name</label>
-          <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" id="nameInput" placeholder='Enter Your Name' />
-          <label htmlFor="usernameInput">Username</label>
-          <input value={username} onChange={(e) => { setUsername(e.target.value.toLowerCase()) }} type="text" id="usernameInput" placeholder='Enter a username' />
-          <label htmlFor="emailInput">Email Address</label>
-          <input value={email} onChange={(e) => { setEmail(e.target.value.toLowerCase()) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
-          <label htmlFor="passInput">Password</label>
-          <input value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" id="passInput" placeholder='Enter Your Password' />
-          <button onClick={signup} type='submit' className='p-1 py-2 fw-bold fs-5 rounded-3'>SIGN UP</button>
-        </form>
-      </div>
-      <center>
-        <div className="formLast col-xl-4 col-lg-5 col-md-6 col-sm-8 col-10">
-          <div className='d-flex justify-content-center'>
-            <p className='me-2'>Already have an account? </p> <Link to='/login'>Log in</Link>
-          </div>
+    <div style={{ position: "fixed", top: "8vh", width: "100%", height: "92vh" }}>
+      <div className='row signup'>
+        <h4 className='text-center mt-5 mb-4 bolder'>SIGN UP</h4>
+        <p className='p-2 ps-4 rounded-3 mx-auto' style={alertStyle}>{signpRes}</p>
+        <div className='p-3 d-flex justify-content-center align-items-center row'>
+          <form className='signupform col-xl-4 col-lg-5 col-md-6 col-sm-8 col-10'>
+            <label htmlFor="nameInput">Name</label>
+            <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" id="nameInput" placeholder='Enter Your Name' />
+            <label htmlFor="usernameInput">Username</label>
+            <input value={username} onChange={(e) => { setUsername(e.target.value.toLowerCase()) }} type="text" id="usernameInput" placeholder='Enter A Username' />
+            <label htmlFor="emailInput">Email Address</label>
+            <input value={email} onChange={(e) => { setEmail(e.target.value.toLowerCase()) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
+            <label htmlFor="passInput">Password</label>
+            <input value={password} onChange={(e) => { setPassword(e.target.value) }} type="password" id="passInput" placeholder='Enter Your Password' />
+            <button onClick={signup} type='submit' className='p-1 py-2 fw-bold fs-5 rounded-3'>SIGN UP</button>
+          </form>
         </div>
-      </center>
+        <center>
+          <div className="formLast col-xl-4 col-lg-5 col-md-6 col-sm-8 col-10">
+            <div className='d-flex justify-content-center'>
+              <p className='me-2'>Already have an account? </p> <Link to='/login'>Log in</Link>
+            </div>
+          </div>
+          <div className='mt-5 d-flex justify-content-center'>
+            <p style={{ fontSize: "15px", fontStyle: "italic" }} className="me-3">Note:</p>
+            <p className='text-start mb-5' style={{ fontSize: "13px" }}>1. Username must be 3 to 11 characters long. <br />
+              2. Password must be 5 to 11 characters long.</p>
+          </div>
+        </center>
+      </div>
     </div>
   )
 }
