@@ -24,7 +24,11 @@ const Message = () => {
         }
         setInterval(() => {
             getMsg();
-        }, 100)
+        }, 100);
+
+        setTimeout(() => {
+            scrollMsgBox();
+        }, 500);
         //eslint-disable-next-line
     }, []);
 
@@ -52,10 +56,15 @@ const Message = () => {
                 }
             });
 
+            // eslint-disable-next-line
             result = await result.json();
-            console.log(result)
 
             getMsg();
+
+            setTimeout(() => {
+                scrollMsgBox();
+            }, 200);
+
         } else {
             ref.current.focus();
         }
@@ -82,36 +91,41 @@ const Message = () => {
         }
     }
 
+    const scrollMsgBox = () => {
+        const element = document.querySelector("#messageBox");
+        element.scrollTop = element.scrollHeight;
+    }
+
     return (
         <div style={{ height: '92vh', width: "100%", position: "fixed", top: "8vh" }}>
-            <div className='messageBox'>
+            <div className='messageBox' id='messageBox'>
                 {
                     msgVal.length > 0 ? msgVal.map((items, index) => {
                         return <div className=' mt-2' key={items._id}>
                             {
                                 items.username === localStorage.getItem("username") ? <div className='d-flex justify-content-start'>
-                                <p onClick={() => { showMore(items._id) }} className='textMsg p-2 ps-3 pe-3 mx-3 rounded-3'>
-                                    <p style={{ fontSize: '14px', color: "yellow", fontStyle: "italic" }} className='ps-1'>
-                                        {
-                                            items.username === localStorage.getItem("username") ? "You" : localStorage.getItem("friendToChatName")
-                                        }
-                                    </p>
-                                    {items.messageMe}</p>
-                                {
-                                    items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
-                                }
-                            </div> : <div className='d-flex justify-content-end'>
-                                <p onClick={() => { showMore(items._id) }} className='textMsg p-2 ps-3 pe-3 mx-3 rounded-3'>
-                                    <p style={{ fontSize: '14px', color: "yellow", fontStyle: "italic" }} className='ps-1'>
-                                        {
-                                            items.username === localStorage.getItem("username") ? "You" : localStorage.getItem("friendToChatName")
-                                        }
-                                    </p>
-                                    {items.messageMe}</p>
-                                {
-                                    items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
-                                }
-                            </div>
+                                    <div onClick={() => { showMore(items._id) }} className='textMsg p-2 ps-3 pe-3 me-3 mx-sm-3 mx-lg-5 rounded-3'>
+                                        <p style={{ fontSize: '14px', color: "yellow", fontStyle: "italic" }} className='ps-1'>
+                                            {
+                                                items.username === localStorage.getItem("username") ? "You" : localStorage.getItem("friendToChatName")
+                                            }
+                                        </p>
+                                        {items.messageMe}</div>
+                                    {
+                                        items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
+                                    }
+                                </div> : <div className='d-flex justify-content-end'>
+                                    <div onClick={() => { showMore(items._id) }} className='textMsg p-2 ps-3 pe-3 mx-sm-3 mx-lg-5 rounded-3'>
+                                        <p style={{ fontSize: '14px', color: "yellow", fontStyle: "italic" }} className='ps-1'>
+                                            {
+                                                items.username === localStorage.getItem("username") ? "You" : localStorage.getItem("friendToChatName")
+                                            }
+                                        </p>
+                                        {items.messageMe}</div>
+                                    {
+                                        items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
+                                    }
+                                </div>
                             }
                         </div>
                     }) : <p className='text-center'>No messages yet</p>
