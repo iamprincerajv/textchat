@@ -23,7 +23,7 @@ const Header = () => {
           location.pathname === "/message" ? <i onClick={backHome} className="fa-solid fa-chevron-left fa-xl ms-3 ms-lg-5 ms-md-5 ms-sm-4 mt-2" style={{ paddingTop: "9px", paddingLeft: "5px", paddingRight: "5px", cursor: "pointer" }}></i> : ""
         }
         {
-          location.pathname==="/message" ? <p className='ps-3 ms-1'>HelloChat</p> : <p className='ps-3 ms-3 ps-lg-5 ms-lg-5 ps-sm-4 ms-sm-4'>HelloChat</p>
+          location.pathname==="/message" ? <p className='ps-1 ps-sm-3 ms-1'>HelloChat</p> : <p className='ps-3 ms-3 ps-lg-5 ms-lg-5 ps-sm-4 ms-sm-4'>HelloChat</p>
         }
       </div>
       {location.pathname === "/" ? <Link to='/login' style={{ color: 'white', backgroundColor: 'blueviolet' }} className='me-3 me-sm-4 me-md-5 p-1 px-3 rounded-3 bold' onClick={logOut}>{localStorage.getItem('name')} - Log Out</Link> : ""}

@@ -3,13 +3,6 @@ import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// const TextMsg = (props) => {
-//     return <div className=' mt-2 d-flex'>
-//         <p style={{fontSize: '15px'}} className='mx-5 ps-2'>{localStorage.getItem('name')}</p>
-//         <p className='textMsg p-2 ps-3 pe-4 mx-3 rounded-3'>{props.msgVal}</p>
-//     </div>
-// }
-
 const Message = () => {
 
     const [msgVal, setMsgVal] = useState([]);
@@ -97,7 +90,7 @@ const Message = () => {
     }
 
     return (
-        <div style={{ height: '92vh', width: "100%", position: "fixed", top: "8vh" }}>
+        <div style={{ height: '90vh', width: "100%", position: "fixed", top: "9.5vh" }}>
             <div className='messageBox' id='messageBox'>
                 {
                     msgVal.length > 0 ? msgVal.map((items, index) => {

@@ -50,7 +50,7 @@ const Friends = () => {
     }
 
     return (
-        <div style={{position: "fixed", top: "8vh", width: "100%"}}>
+        <div style={{position: "fixed", top: "9.5vh", width: "100%"}}>
             <div className='row'>
                 <center>
                     <form className='friendsForm mt-5 col-lg-4 col-xl-3 col-md-5 col-sm-6 col-8'>
@@ -72,7 +72,7 @@ const Friends = () => {
                                     <p style={{ fontSize: "14px" }}>{items.username}</p>
                                 </div>
                             </div>
-                        }) : <p>No user with this search term</p>
+                        }) : <p>No user found</p>
                     }
                 </div>
             </center>

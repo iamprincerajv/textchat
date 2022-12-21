@@ -71,7 +71,7 @@ const Signup = () => {
   }
 
   return (
-    <div style={{ position: "fixed", top: "8vh", width: "100%", height: "92vh" }}>
+    <div style={{ position: "fixed", top: "9.5vh", width: "100%", height: "90vh" }}>
       <div className='row signup'>
         <h4 className='text-center mt-5 mb-4 bolder'>SIGN UP</h4>
         <p className='p-2 ps-4 rounded-3 mx-auto' style={alertStyle}>{signpRes}</p>
@@ -94,7 +94,7 @@ const Signup = () => {
               <p className='me-2'>Already have an account? </p> <Link to='/login'>Log in</Link>
             </div>
           </div>
-          <div className='mt-5 d-flex justify-content-center'>
+          <div className='mt-5 d-flex justify-content-center pb-5'>
             <p style={{ fontSize: "15px", fontStyle: "italic" }} className="me-3">Note:</p>
             <p className='text-start mb-5' style={{ fontSize: "13px" }}>1. Username must be 3 to 11 characters long. <br />
               2. Password must be 5 to 11 characters long.</p>
