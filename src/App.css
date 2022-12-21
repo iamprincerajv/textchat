@@ -91,18 +91,18 @@ header p {
 }
 
 /* sign up & Login */
-.signup {
+.signupScroll {
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */
   scrollbar-width: none;
   /* Firefox */
 
-  height: 100%;
+  height: 73vh;
   overflow: auto;
-  margin-bottom: 10px !important;
+  padding-bottom: 100px;
 }
 
-.signup::-webkit-scrollbar {
+.signupScroll::-webkit-scrollbar {
   display: none;
   /* Safari and Chrome */
 }
