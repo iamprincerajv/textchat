@@ -28,7 +28,11 @@ const Message = () => {
     const getMsg = async () => {
         let username = localStorage.getItem("username");
         let friendToChat = localStorage.getItem("friendToChat");
-        let result = await fetch(`http://52.66.179.35:5000/getMsg/${username}/${friendToChat}`);
+        let result = await fetch(`http://52.66.179.35:5000/getMsg/${username}/${friendToChat}`, {
+            headers: {
+                "Authorization": `bearer ${localStorage.getItem("token")}`
+            }
+        });
         result = await result.json();
         setMsgVal(result);
     }
@@ -45,7 +49,8 @@ const Message = () => {
                 method: "POST",
                 body: JSON.stringify({ username: username, messageMe: msg, friendToChat: localStorage.getItem("friendToChat"), friendToChatName: localStorage.getItem("friendToChatName") }),
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `bearer ${localStorage.getItem("token")}`
                 }
             });
 
@@ -65,7 +70,10 @@ const Message = () => {
 
     const deleteMsg = async (msgId) => {
         let result = await fetch(`http://52.66.179.35:5000/delete/${msgId}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Authorization": `bearer ${localStorage.getItem("token")}`
+            }
         });
         result = await result.json();
         if (result) {

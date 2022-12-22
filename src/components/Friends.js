@@ -19,7 +19,11 @@ const Friends = () => {
     }, [])
 
     const getUsers = async () => {
-        let result = await fetch("http://52.66.179.35:5000/getUsers");
+        let result = await fetch("http://52.66.179.35:5000/getUsers", {
+            headers: {
+                "Authorization": `bearer ${localStorage.getItem("token")}`
+            }
+        });
         result = await result.json();
         setUsers(result);
     }
