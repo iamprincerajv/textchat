@@ -97,7 +97,7 @@ const Message = () => {
                         return <div className=' mt-2' key={items._id}>
                             {
                                 items.username === localStorage.getItem("username") ? <div className='d-flex justify-content-start'>
-                                    <div onClick={() => { showMore(items._id) }} className='textMsg p-2 ps-3 pe-3 me-3 mx-sm-3 mx-lg-5 rounded-3'>
+                                    <div onClick={() => { showMore(items._id) }} className='textMsg p-2 ps-3 pe-3 me-3 mx-sm-3 mx-lg-5 rounded-3' style={{ backgroundColor: "darkslategrey" }}>
                                         <p style={{ fontSize: '14px', color: "yellow", fontStyle: "italic" }} className='ps-1'>
                                             {
                                                 items.username === localStorage.getItem("username") ? "You" : localStorage.getItem("friendToChatName")

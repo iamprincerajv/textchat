@@ -38,8 +38,11 @@ header p {
   /* Firefox */
 
   height: 90%;
-  padding: 54px;
+  padding: 20px;
   overflow: auto;
+  padding-bottom: 70px;
+  padding-top: 0px;
+  margin-top: 0px !important;
 }
 
 .messageBox::-webkit-scrollbar {
@@ -52,7 +55,7 @@ header p {
   width: fit-content;
   height: fit-content;
   min-width: 100px;
-  max-width: 75%;
+  max-width: 95%;
   white-space: break-spaces;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -63,10 +66,10 @@ header p {
   position: fixed;
   bottom: 0px;
   width: 100%;
+  background-color: black;
 }
 
 .send input {
-  background-color: black;
   color: white;
   width: 90%;
   padding: 10px;
@@ -74,20 +77,19 @@ header p {
   outline: none;
   border: none;
   border-radius: 8px;
-  background-color: rgba(62, 53, 53, 0.521);
+  background-color: darkslategrey;
 }
 
 .sendBtn {
-  height: 54px;
-  width: 54px;
+  /* height: 56px;
+  width: 56px; */
   border-radius: 50%;
-  background-color: black;
-  color: gray;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 10px !important;
-  background-color: rgba(62, 53, 53, 0.521);
+  background-color: none;
 }
 
 /* sign up & Login */
@@ -186,4 +188,11 @@ a {
   background-color: black;
   border: 0.5px solid blueviolet;
   color: white;
+}
+
+/* Media Queries */
+@media screen and (min-width: 600px) {
+  .messageBox {
+    padding: 54px;
+  }
 }
