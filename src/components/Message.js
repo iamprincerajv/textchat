@@ -129,7 +129,7 @@ const Message = () => {
                                 </div>
                             }
                         </div>
-                    }) : <p className='text-center'>No messages yet</p>
+                    }) : <p className='text-center pt-3 pt-sm-0'>No messages yet</p>
                 }
             </div>
             <div className='send d-flex align-items-center justify-content-center row'>

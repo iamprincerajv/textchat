@@ -32,7 +32,11 @@ const Friends = () => {
         let key = e.target.value;
 
         if (key) {
-            let result = await fetch(`http://52.66.179.35:5000/search/${key}`);
+            let result = await fetch(`http://52.66.179.35:5000/search/${key}`, {
+                headers: {
+                    "Authorization": `bearer ${localStorage.getItem("token")}`
+                }
+            });
             result = await result.json();
 
             if (result) {
