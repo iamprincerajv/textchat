@@ -28,7 +28,7 @@ const Message = () => {
     const getMsg = async () => {
         let username = localStorage.getItem("username");
         let friendToChat = localStorage.getItem("friendToChat");
-        let result = await fetch(`http://13.233.193.253:5000/getMsg/${username}/${friendToChat}`);
+        let result = await fetch(`http://52.66.179.35:5000/getMsg/${username}/${friendToChat}`);
         result = await result.json();
         setMsgVal(result);
     }
@@ -41,7 +41,7 @@ const Message = () => {
 
             let username = localStorage.getItem("username");
 
-            let result = await fetch("http://13.233.193.253:5000/sendMsg", {
+            let result = await fetch("http://52.66.179.35:5000/sendMsg", {
                 method: "POST",
                 body: JSON.stringify({ username: username, messageMe: msg, friendToChat: localStorage.getItem("friendToChat"), friendToChatName: localStorage.getItem("friendToChatName") }),
                 headers: {
@@ -64,7 +64,7 @@ const Message = () => {
     }
 
     const deleteMsg = async (msgId) => {
-        let result = await fetch(`http://13.233.193.253:5000/delete/${msgId}`, {
+        let result = await fetch(`http://52.66.179.35:5000/delete/${msgId}`, {
             method: "DELETE"
         });
         result = await result.json();

@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     if (email.length > 0 && password.length > 0) {
-      let result = await fetch('http://13.233.193.253:5000/login', {
+      let result = await fetch('http://52.66.179.35:5000/login', {
         method: "post",
         body: JSON.stringify({ email, password }),
         headers: {
