@@ -6,6 +6,7 @@ const Msg = require("./models/Messages");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
+const verifyUser = require("./middleware/verifyUser");
 
 const codeForJWT = 'hightideison4378';
 
@@ -99,10 +100,11 @@ app.post('/login', [
 })
 
 // SEND MESSAGES
-app.post("/sendMsg", [
+app.post("/sendMsg", verifyUser, [
     body('username', 'Username could not be found').exists(),
     body('messageMe', 'Message cannot be empty').exists(),
-    body('friendToChat', 'Receiver could not be found').exists()
+    body('friendToChat', 'Receiver could not be found').exists(),
+    body('friendToChatName', 'Receiver could not be found').exists()
 ], async (req, res)=>{
     let errors = validationResult(req);
     if(!errors.isEmpty()) {
@@ -120,7 +122,7 @@ app.post("/sendMsg", [
 })
 
 // GET MESSAGES
-app.get("/getMsg/:username/:friendToChat", async (req, res)=>{
+app.get("/getMsg/:username/:friendToChat", verifyUser, async (req, res)=>{
     let result = await Msg.find({
         "username": { "$in" : [req.params.username, req.params.friendToChat]},
         "friendToChat": { "$in" : [req.params.username, req.params.friendToChat]}
@@ -133,19 +135,19 @@ app.get("/getMsg/:username/:friendToChat", async (req, res)=>{
 })
 
 // DELETE MESSAGE
-app.delete("/delete/:id", async (req, res)=>{
+app.delete("/delete/:id", verifyUser, async (req, res)=>{
     let result = await Msg.findOneAndDelete({_id: req.params.id});
     res.json({success: "deleted"})
 })
 
 // GET USERS
-app.get('/getUsers', async (req, res)=>{
+app.get('/getUsers', verifyUser, async (req, res)=>{
     let result = await User.find();
     res.send(result);
 })
 
 // SEARCH USER
-app.get("/search/:key", async (req, res)=>{
+app.get("/search/:key", verifyUser, async (req, res)=>{
     let result = await User.find({
         '$or': [
             {username: { $regex: req.params.key}},
