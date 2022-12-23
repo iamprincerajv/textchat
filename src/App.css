@@ -190,9 +190,72 @@ a {
   color: white;
 }
 
+/* Sidebar */
+.sidebar {
+  display: none;
+  position: fixed;
+  right: 0px;
+  top: 8vh;
+  background-color: blueviolet;
+  height: 0%;
+  width: 0px;
+  padding: 20px;
+  border: 0.5px solid darkslategrey;
+  z-index: 1;
+}
+
+.sidebarActive {
+  height: 100%;
+  width: 200px;
+  display: block;
+  animation: sidebarIn 0.3s;
+}
+
+.sidebar p {
+  background-color: black;
+  padding: 5px;
+  margin-bottom: 5px !important;
+  border: 0.5px solid darkslategrey;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 3px 3px 3px rgb(53, 50, 50);
+}
+
+.sidebar p:hover {
+  border: none;
+}
+
 /* Media Queries */
 @media screen and (min-width: 600px) {
   .messageBox {
     padding: 54px;
+  }
+}
+
+/* Key Frames */
+@keyframes sidebarIn {
+  0% {
+    height: 0%;
+    width: 0px;
+  }
+  100% {
+    height: 100%;
+    width: 200px;
+  }
+  0% {
+    height: 0%;
+    width: 0px;
+  }
+}
+
+@keyframes sidebarOut {
+  100% {
+    height: 100%;
+    width: 200px;
+  }
+  0% {
+    height: 0%;
+    width: 0px;
   }
 }

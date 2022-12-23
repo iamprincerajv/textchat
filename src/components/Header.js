@@ -1,7 +1,9 @@
 import React from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
-const Header = () => {
+const Header = (props) => {
+
+  const { setSidebar } = props;
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -12,8 +14,14 @@ const Header = () => {
     localStorage.removeItem("friendToChatName");
   }
 
-  const logOut = () => {
-    localStorage.clear();
+  const showSidebar = () => {
+    let sidebar = document.querySelector(".sidebar");
+    
+    if(sidebar.classList.contains("sidebarActive")) {
+      setSidebar(["sidebar"]);
+    } else {
+      setSidebar(["sidebar", "sidebarActive"]);
+    }
   }
 
   return (
@@ -26,9 +34,9 @@ const Header = () => {
           location.pathname==="/message" ? <p className='ps-1 ps-sm-3 ms-1'>HelloChat</p> : <p className='ps-3 ms-3 ps-lg-5 ms-lg-5 ps-sm-4 ms-sm-4'>HelloChat</p>
         }
       </div>
-      {location.pathname === "/" ? <Link to='/login' style={{ color: 'white', backgroundColor: 'blueviolet' }} className='me-3 me-sm-4 me-md-5 p-1 px-3 rounded-3 bold' onClick={logOut}>{localStorage.getItem('name')} - Log Out</Link> : ""}
+      {location.pathname === "/" ? <div style={{ color: 'white', backgroundColor: 'blueviolet', cursor: "pointer" }} className='me-3 me-sm-4 me-md-5 p-1 px-3 rounded-3 bold' onClick={showSidebar}>{localStorage.getItem('name')} (You)</div> : ""}
 
-      {location.pathname === "/message" ? <div onClick={backHome} style={{ color: 'white', backgroundColor: 'blueviolet' }} className='me-3 me-sm-4 me-lg-5 me-md-5 p-1 px-3 rounded-3 bold'>{localStorage.getItem("friendToChat")} </div> : ""}
+      {location.pathname === "/message" ? <div onClick={backHome} style={{ color: 'white', backgroundColor: 'blueviolet', cursor: "pointer" }} className='me-3 me-sm-4 me-lg-5 me-md-5 p-1 px-3 rounded-3 bold'>{localStorage.getItem("friendToChat")} </div> : ""}
     </header>
   )
 }

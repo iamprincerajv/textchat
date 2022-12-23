@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -9,15 +10,17 @@ import Friends from './components/Friends';
 
 function App() {
 
+  const [sidebar, setSidebar] = useState(["sidebar"])
+
   return (
     <>
       <Router>
-        <Header />
+        <Header setSidebar={setSidebar} />
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route element={<PrivateComponent />}>
-            <Route path='/' element={<Friends />} />
+            <Route path='/' element={<Friends sidebar={sidebar} />} />
             <Route path='/message' element={<Message />} />
           </Route>
         </Routes>

@@ -1,11 +1,11 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from './Sidebar';
 
-const Friends = () => {
+const Friends = (props) => {
 
     const [users, setUsers] = useState("");
+    const { sidebar } = props;
     const navigate = useNavigate("");
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const Friends = () => {
     }, [])
 
     const getUsers = async () => {
-        let result = await fetch("http://52.66.179.35:5000/getUsers", {
+        let result = await fetch("http://localhost:5000/getUsers", {
             headers: {
                 "Authorization": `bearer ${localStorage.getItem("token")}`
             }
@@ -58,6 +58,8 @@ const Friends = () => {
     }
 
     return (
+        <>
+        <Sidebar sidebar={sidebar} />
         <div style={{position: "fixed", top: "9.5vh", width: "100%"}}>
             <div className='row'>
                 <center>
@@ -85,6 +87,7 @@ const Friends = () => {
                 </div>
             </center>
         </div>
+        </>
     )
 }
 
