@@ -13,7 +13,7 @@ const Sidebar = (props) => {
 
     return (
         <div className={sidebar.join(" ")}>
-            <p>Your Profile</p>
+            <p onClick={()=>{navigate("/profile")}}>Your Profile</p>
             <p onClick={logOut}>Log Out</p>
         </div>
     )

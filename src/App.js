@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Message from './components/Message';
 import PrivateComponent from './components/PrivateComponent';
 import Friends from './components/Friends';
+import Profile from './components/Profile';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route element={<PrivateComponent />}>
             <Route path='/' element={<Friends sidebar={sidebar} />} />
             <Route path='/message' element={<Message />} />
+            <Route path='/profile' element={<Profile />} />
           </Route>
         </Routes>
       </Router>

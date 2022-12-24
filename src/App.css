@@ -226,6 +226,54 @@ a {
   border: none;
 }
 
+/* Profile */
+.profile {
+  position: fixed;
+  top: 8vh;
+  width: 100%;
+  height: 100%;
+}
+
+.profileImg {
+  border: 0.5px solid blueviolet;
+  border-radius: 50%;
+  height: 110px;
+  width: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileLabel {
+  width: 130px;
+  height: fit-content;
+  background-color: blueviolet;
+  border-radius: 5px;
+  padding: 5px;
+  padding-left: 10px;
+  margin-bottom: 10px !important;
+  margin-right: 10px !important;
+  text-align: left;
+}
+
+.labelAns {
+  width: 300px;
+  height: fit-content;
+  padding: 5px;
+  padding-left: 10px;
+  border: 0.5px solid blueviolet;
+  border-radius: 5px;
+  color: white;
+  text-align: left;
+}
+
+.editBtn {
+  background-color: black;
+  color: white;
+  border: 0.1px solid white;
+  border-radius: 5px;
+}
+
 /* Media Queries */
 @media screen and (min-width: 600px) {
   .messageBox {

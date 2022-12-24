@@ -24,6 +24,11 @@ const Header = (props) => {
     }
   }
 
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/login");
+}
+
   return (
     <header className='d-flex justify-content-between'>
       <div className='d-flex'>
@@ -37,6 +42,8 @@ const Header = (props) => {
       {location.pathname === "/" ? <div style={{ color: 'white', backgroundColor: 'blueviolet', cursor: "pointer" }} className='me-3 me-sm-4 me-md-5 p-1 px-3 rounded-3 bold' onClick={showSidebar}>{localStorage.getItem('name')} (You)</div> : ""}
 
       {location.pathname === "/message" ? <div onClick={backHome} style={{ color: 'white', backgroundColor: 'blueviolet', cursor: "pointer" }} className='me-3 me-sm-4 me-lg-5 me-md-5 p-1 px-3 rounded-3 bold'>{localStorage.getItem("friendToChat")} </div> : ""}
+
+      {location.pathname === "/profile" ? <div onClick={logOut} style={{ color: 'white', backgroundColor: 'blueviolet', cursor: "pointer" }} className='me-3 me-sm-4 me-lg-5 me-md-5 p-1 px-3 rounded-3 bold'>Log Out </div> : ""}
     </header>
   )
 }
