@@ -21,7 +21,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route element={<PrivateComponent />}>
-            <Route path='/' element={<Friends sidebar={sidebar} />} />
+            <Route path='/' element={<Friends sidebar={sidebar} setSidebar={setSidebar} />} />
             <Route path='/message' element={<Message />} />
             <Route path='/profile' element={<Profile />} />
           </Route>

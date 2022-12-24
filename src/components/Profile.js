@@ -12,10 +12,24 @@ const Profile = () => {
     }, [])
 
     const getProfile = async () => {
-        let key = localStorage.getItem("username");
+        let key1 = localStorage.getItem("username");
+        let key2 = localStorage.getItem("friendToChat");
 
-        if (key) {
-            let result = await fetch(`http://localhost:5000/search/${key}`, {
+        if (!localStorage.getItem("friendToChat")) {
+            let result = await fetch(`http://localhost:5000/search/${key1}`, {
+                headers: {
+                    "Authorization": `bearer ${localStorage.getItem("token")}`
+                }
+            });
+            result = await result.json();
+
+            if (result) {
+                setName(result[0].name);
+                setUsername(result[0].username);
+                setEmail(result[0].email);
+            }
+        } else {
+            let result = await fetch(`http://localhost:5000/search/${key2}`, {
                 headers: {
                     "Authorization": `bearer ${localStorage.getItem("token")}`
                 }

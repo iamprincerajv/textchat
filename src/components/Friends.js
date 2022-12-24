@@ -5,7 +5,7 @@ import Sidebar from './Sidebar';
 const Friends = (props) => {
 
     const [users, setUsers] = useState("");
-    const { sidebar } = props;
+    const { sidebar, setSidebar } = props;
     const navigate = useNavigate("");
 
     useEffect(() => {
@@ -14,7 +14,9 @@ const Friends = (props) => {
         if (localStorage.getItem("friendToChat")) {
             localStorage.removeItem("friendToChat");
             localStorage.removeItem("friendToChatName");
-        }
+        };
+
+        setSidebar(["sidebar"]);
         // eslint-disable-next-line
     }, [])
 
