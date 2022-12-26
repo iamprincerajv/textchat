@@ -274,10 +274,73 @@ a {
   border-radius: 5px;
 }
 
+/* Update Profile */
+.updatePro {
+  width: 90%;
+  max-width: 700px;
+  height: 70%;
+  background-color: blueviolet;
+  display: none;
+  z-index: 1;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  border-radius: 8px;
+  z-index: 1;
+  translate: -50%;
+}
+
+.updateActive {
+  display: block;
+  animation: updateProfile 50ms;
+}
+
+.updatePro h5 {
+  background-color: black;
+  width: fit-content;
+  box-shadow: 3px 3px 3px rgb(53, 50, 50);
+}
+
+.updatePro form input {
+  display: block;
+  background-color: black;
+  padding: 10px;
+  padding-left: 15px;
+  margin-bottom: 15px !important;
+  width: 350px;
+  border-radius: 8px;
+  color: white;
+}
+
+.updatePro form input:focus {
+  outline: none;
+}
+
+.updatePro form label {
+  text-align: left;
+  display: flex;
+  justify-self: left;
+  width: 350px;
+  padding-left: 10px;
+}
+
+.updatePro form button {
+  background-color: black;
+}
+
 /* Media Queries */
 @media screen and (min-width: 600px) {
   .messageBox {
     padding: 54px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .updatePro form input {
+    width: 90%;
+  }
+  .updatePro form label {
+    width: 90%;
   }
 }
 
@@ -291,19 +354,15 @@ a {
     height: 100%;
     width: 200px;
   }
-  0% {
-    height: 0%;
-    width: 0px;
-  }
 }
 
-@keyframes sidebarOut {
-  100% {
-    height: 100%;
-    width: 200px;
-  }
-  0% {
+@keyframes updateProfile {
+  from {
     height: 0%;
-    width: 0px;
+    width: 0%;
+  }
+  to {
+    height: 65%;
+    width: 45%;
   }
 }
