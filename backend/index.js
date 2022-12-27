@@ -158,4 +158,30 @@ app.get("/search/:key", verifyUser, async (req, res)=>{
     res.send(result);
 })
 
+// UPDATE PROFILE
+app.put("/updateProfile/:email", verifyUser,[
+    body('name', 'Enter a valid name').isLength({ min: 3}),
+    body('username', 'Enter a valid username').isLength({ min: 3})
+], async (req, res)=>{
+    let errors = validationResult(req);
+    if(!errors.isEmpty()) {
+        res.status(400).json({ errors: errors.array()});
+    }
+
+    let user = await User.findOne({ email: req.params.email});
+    if(!user) {
+        res.status(404).json({error: "Something went wrong"});
+    }
+
+    user = await User.findOneAndUpdate(
+        { email: req.params.email},
+        {
+            $set: req.body
+        }
+    );
+    if(user) {
+        res.json(user);
+    }
+})
+
 app.listen(5000);

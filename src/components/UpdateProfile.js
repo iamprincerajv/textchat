@@ -4,7 +4,7 @@ const UpdateProfile = (props) => {
 
     const [name, setName] = useState(localStorage.getItem("name"));
     const [username, setUsername] = useState(localStorage.getItem("username"));
-    const [email, setEmail] = useState(localStorage.getItem("email"));
+    const email = localStorage.getItem("email");
 
     const updateProfile = (e) => {
         e.preventDefault();
@@ -25,10 +25,8 @@ const UpdateProfile = (props) => {
                     <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" id="nameInput" placeholder='Enter Your Name' />
                     <label htmlFor="usernameInput">Username</label>
                     <input value={username} onChange={(e) => { setUsername(e.target.value.toLowerCase()) }} type="text" id="usernameInput" placeholder='Enter A Username' />
-                    <label htmlFor="emailInput">Email Address</label>
-                    <input value={email} onChange={(e) => { setEmail(e.target.value.toLowerCase()) }} type="email" id="emailInput" placeholder='Enter Your Email Address' />
-                    <button onClick={closeUpdate} type='button' className='p-2 px-4 me-1 text-white rounded-2'>Cancel</button>
-                    <button onClick={updateProfile} type='submit' className='p-2 px-4 ms-1 text-white rounded-2'>Update</button>
+                    <button onClick={closeUpdate} type='button' className='p-2 px-4 me-1 mt-3 text-white rounded-2'>Cancel</button>
+                    <button onClick={updateProfile} type='submit' className='p-2 px-4 ms-1 mt-3 text-white rounded-2'>Update</button>
                 </form>
             </center>
         </div>
