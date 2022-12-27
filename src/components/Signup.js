@@ -27,7 +27,7 @@ const Signup = () => {
   const signup = async (e) => {
     e.preventDefault();
 
-    if (name.length > 2 && username.length > 2 && username.length < 12 && email && password.length > 5 && password.length < 12) {
+    if (name.length > 2 && username.length > 2 && username.length < 16 && email && password.length > 5 && password.length < 12) {
       let result = await fetch('http://52.66.179.35:5000/signup', {
         method: 'post',
         body: JSON.stringify({ name, username, email, password }),
@@ -41,6 +41,7 @@ const Signup = () => {
       if (result.authToken) {
         localStorage.setItem('name', result.name);
         localStorage.setItem("username", result.username);
+        localStorage.setItem("email", result.email);
         localStorage.setItem('token', result.authToken);
         setSignupRes('You have successfully signed up!');
         setAlertStyle({
@@ -97,7 +98,7 @@ const Signup = () => {
             </div>
             <div className='mt-5 d-flex justify-content-center pb-5'>
               <p style={{ fontSize: "15px", fontStyle: "italic" }} className="me-3">Note:</p>
-              <p className='text-start mb-5' style={{ fontSize: "13px" }}>1. Username must be 3 to 11 characters long. <br />
+              <p className='text-start mb-5' style={{ fontSize: "13px" }}>1. Username must be 3 to 15 characters long. <br />
                 2. Password must be 5 to 11 characters long.</p>
             </div>
           </center>

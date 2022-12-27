@@ -6,8 +6,24 @@ const UpdateProfile = (props) => {
     const [username, setUsername] = useState(localStorage.getItem("username"));
     const email = localStorage.getItem("email");
 
-    const updateProfile = (e) => {
+    const updateProfile = async (e) => {
         e.preventDefault();
+
+        if(name.length > 2 && username.length > 2 && username.length < 16) {
+            let result = await fetch(`http://localhost:5000/updateProfile/${email}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({name, username})
+            });
+
+            // eslint-disable-next-line
+            result = await result.json();
+
+            props.getProfile();
+        }
     }
 
     const closeUpdate = (e) => {

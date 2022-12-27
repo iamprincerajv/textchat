@@ -57,7 +57,7 @@ let data = {
 
 const authToken = jwt.sign(data, codeForJWT);
 
-res.json({name: user.name, username: user.username, authToken});
+res.json({name: user.name, username: user.username,email: user.email, authToken});
 
 })
 
@@ -92,7 +92,7 @@ app.post('/login', [
         };
 
         const authToken = jwt.sign(data, codeForJWT);
-        res.json({name: user.name, username: user.username, authToken});
+        res.json({name: user.name, username: user.username, email: user.email, authToken});
 
     } catch (error) {
         res.status(400).send("Something error occurred")
@@ -158,6 +158,18 @@ app.get("/search/:key", verifyUser, async (req, res)=>{
     res.send(result);
 })
 
+// GET PROFILE
+app.get("/getProfile/:key", verifyUser, async (req, res)=>{
+    let result = await User.find({
+        '$or': [
+            {email: req.params.key},
+            {username: req.params.key}
+        ]
+    });
+
+    res.send(result);
+})
+
 // UPDATE PROFILE
 app.put("/updateProfile/:email", verifyUser,[
     body('name', 'Enter a valid name').isLength({ min: 3}),
@@ -173,12 +185,13 @@ app.put("/updateProfile/:email", verifyUser,[
         res.status(404).json({error: "Something went wrong"});
     }
 
-    user = await User.findOneAndUpdate(
+    user = await User.updateOne(
         { email: req.params.email},
         {
             $set: req.body
         }
     );
+
     if(user) {
         res.json(user);
     }

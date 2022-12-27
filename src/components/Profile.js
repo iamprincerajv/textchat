@@ -14,11 +14,11 @@ const Profile = () => {
     }, [])
 
     const getProfile = async () => {
-        let key1 = localStorage.getItem("username");
+        let key1 = localStorage.getItem("email");
         let key2 = localStorage.getItem("friendToChat");
 
         if (!localStorage.getItem("friendToChat")) {
-            let result = await fetch(`http://localhost:5000/search/${key1}`, {
+            let result = await fetch(`http://localhost:5000/getProfile/${key1}`, {
                 headers: {
                     "Authorization": `bearer ${localStorage.getItem("token")}`
                 }
@@ -29,10 +29,12 @@ const Profile = () => {
                 setName(result[0].name);
                 setUsername(result[0].username);
                 setEmail(result[0].email);
+                localStorage.setItem("name", result[0].name);
+                localStorage.setItem("username", result[0].username);
                 localStorage.setItem("email", result[0].email);
             }
         } else {
-            let result = await fetch(`http://localhost:5000/search/${key2}`, {
+            let result = await fetch(`http://localhost:5000/getProfile/${key2}`, {
                 headers: {
                     "Authorization": `bearer ${localStorage.getItem("token")}`
                 }
@@ -72,17 +74,19 @@ const Profile = () => {
                             <p className='profileLabel'>Username</p>
                             <p className='labelAns'>{username}</p>
                         </div>
-                        <div className='d-flex justify-content-center'>
-                            <p className='profileLabel'>Email Address</p>
-                            <p className='labelAns'>{email}</p>
-                        </div>
+                        {
+                            !localStorage.getItem("friendToChat") ? <div className='d-flex justify-content-center'>
+                                <p className='profileLabel'>Email Address</p>
+                                <p className='labelAns'>{email}</p>
+                            </div> : ""
+                        }
                     </div>
                     {
                         !localStorage.getItem("friendToChat") ? <button onClick={showUpdate} className='editBtn mt-4 p-1 px-5'>Edit Your Profile</button> : ""
                     }
                 </center>
             </div>
-            <UpdateProfile updateClass={updateClass} setUpdateClass={setUpdateClass} />
+            <UpdateProfile updateClass={updateClass} setUpdateClass={setUpdateClass} getProfile={getProfile} />
         </>
     )
 }

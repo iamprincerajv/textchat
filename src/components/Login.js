@@ -45,6 +45,7 @@ const Login = () => {
 
         localStorage.setItem('name', result.name);
         localStorage.setItem('username', result.username);
+        localStorage.setItem('email', result.email);
         localStorage.setItem("token", result.authToken);
         navigate('/');
       } else {
