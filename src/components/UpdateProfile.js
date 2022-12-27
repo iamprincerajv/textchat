@@ -23,6 +23,7 @@ const UpdateProfile = (props) => {
             result = await result.json();
 
             props.getProfile();
+            props.setUpdateClass(["updatePro"]);
         }
     }
 

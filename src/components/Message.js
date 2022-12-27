@@ -104,24 +104,14 @@ const Message = () => {
                     msgVal.length > 0 ? msgVal.map((items, index) => {
                         return <div className=' mt-2' key={items._id}>
                             {
-                                items.username === localStorage.getItem("username") ? <div className='d-flex justify-content-start'>
+                                items.username === localStorage.getItem("username") ? <div className='d-flex justify-content-end'>
                                     <div onClick={() => { showMore(items._id) }} className='textMsg p-2 ps-3 pe-3 me-3 mx-sm-3 mx-lg-5 rounded-3' style={{ backgroundColor: "darkslategrey" }}>
-                                        <p style={{ fontSize: '14px', color: "yellow", fontStyle: "italic" }} className='ps-1'>
-                                            {
-                                                items.username === localStorage.getItem("username") ? "You" : localStorage.getItem("friendToChatName")
-                                            }
-                                        </p>
                                         {items.messageMe}</div>
                                     {
                                         items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
                                     }
-                                </div> : <div className='d-flex justify-content-end'>
+                                </div> : <div className='d-flex justify-content-start'>
                                     <div onClick={() => { showMore(items._id) }} className='textMsg p-2 ps-3 pe-3 mx-sm-3 mx-lg-5 rounded-3'>
-                                        <p style={{ fontSize: '14px', color: "yellow", fontStyle: "italic" }} className='ps-1'>
-                                            {
-                                                items.username === localStorage.getItem("username") ? "You" : localStorage.getItem("friendToChatName")
-                                            }
-                                        </p>
                                         {items.messageMe}</div>
                                     {
                                         items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
