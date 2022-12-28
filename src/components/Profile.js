@@ -86,7 +86,9 @@ const Profile = () => {
                     }
                 </center>
             </div>
-            <UpdateProfile updateClass={updateClass} setUpdateClass={setUpdateClass} getProfile={getProfile} />
+            {
+                !localStorage.getItem("friendToChat") ? <UpdateProfile updateClass={updateClass} setUpdateClass={setUpdateClass} getProfile={getProfile} /> : ""
+            }
         </>
     )
 }

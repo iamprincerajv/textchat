@@ -72,7 +72,7 @@ const Signup = () => {
   }
 
   return (
-    <div style={{ position: "fixed", top: "9.5vh", width: "100%", height: "90vh" }}>
+    <div style={{ position: "fixed", top: "60px", width: "100%", height: "90vh" }}>
       <div className='row'>
         <h4 className='text-center mt-5 mb-4 bolder'>SIGN UP</h4>
         <div className=' signupScroll'>

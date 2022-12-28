@@ -67,7 +67,7 @@ const Login = () => {
   }
 
   return (
-    <div style={{ position: "fixed", top: "9.5vh", width: "100%", height: "90vh" }}>
+    <div style={{ position: "fixed", top: "60px", width: "100%", height: "90vh" }}>
       <div>
         <h4 className='text-center mt-5 mb-4 bolder'>LOG IN</h4>
         <div className="signupScroll">

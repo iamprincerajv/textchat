@@ -43,7 +43,7 @@ const Header = (props) => {
           location.pathname === "/message" || location.pathname === "/profile" ? <p className='ps-1 ps-sm-3 ms-1'>HelloChat</p> : <p className='ps-3 ms-3 ps-lg-5 ms-lg-5 ps-sm-4 ms-sm-4'>HelloChat</p>
         }
       </div>
-      {location.pathname === "/" ? <div style={{ color: 'white', backgroundColor: 'blueviolet', cursor: "pointer" }} className='me-3 me-sm-4 me-md-5 p-1 px-3 rounded-3 bold' onClick={showSidebar}>{localStorage.getItem('name')} (You)</div> : ""}
+      {location.pathname === "/" ? <div style={{ color: 'white', backgroundColor: 'blueviolet', cursor: "pointer" }} className='me-3 me-sm-4 me-md-5 p-1 px-3 rounded-3 bold' onClick={showSidebar}>Menu</div> : ""}
 
       {location.pathname === "/message" ? <div onClick={() => { navigate("/profile") }} style={{ color: 'white', backgroundColor: 'blueviolet', cursor: "pointer" }} className='me-3 me-sm-4 me-lg-5 me-md-5 p-1 px-3 rounded-3 bold'>{localStorage.getItem("friendToChat")} </div> : ""}
 

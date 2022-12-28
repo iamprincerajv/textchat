@@ -62,7 +62,7 @@ const Friends = (props) => {
     return (
         <>
         <Sidebar sidebar={sidebar} />
-        <div style={{position: "fixed", top: "9.5vh", width: "100%"}}>
+        <div style={{position: "fixed", top: "60px", width: "100%"}}>
             <div className='row'>
                 <center>
                     <form className='friendsForm mt-5 col-lg-4 col-xl-3 col-md-5 col-sm-6 col-8'>

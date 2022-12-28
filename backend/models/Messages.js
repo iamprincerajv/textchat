@@ -17,6 +17,10 @@ const messages = new Schema({
     friendToChatName:{
         type: String,
         required: true
+    },
+    date:{
+        type: Date,
+        default: Date.now
     }
 })
 

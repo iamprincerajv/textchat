@@ -98,7 +98,7 @@ const Message = () => {
     }
 
     return (
-        <div style={{ height: '90vh', width: "100%", position: "fixed", top: "9.5vh" }}>
+        <div style={{ height: '90vh', width: "100%", position: "fixed", top: "60px" }}>
             <div className='messageBox' id='messageBox'>
                 {
                     msgVal.length > 0 ? msgVal.map((items, index) => {
