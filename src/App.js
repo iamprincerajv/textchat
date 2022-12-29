@@ -8,6 +8,7 @@ import Message from './components/Message';
 import PrivateComponent from './components/PrivateComponent';
 import Friends from './components/Friends';
 import Profile from './components/Profile';
+import Settings from './components/Settings';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
             <Route path='/' element={<Friends sidebar={sidebar} setSidebar={setSidebar} />} />
             <Route path='/message' element={<Message />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/settings' element={<Settings />} />
           </Route>
         </Routes>
       </Router>

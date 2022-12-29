@@ -11,9 +11,14 @@ const Sidebar = (props) => {
         navigate("/login");
     }
 
+    const settings = () => {
+        navigate("/settings");
+    }
+
     return (
         <div className={sidebar.join(" ")}>
             <p onClick={()=>{navigate("/profile")}}>Your Profile</p>
+            <p onClick={settings}>Settings</p>
             <p onClick={logOut}>Log Out</p>
         </div>
     )

@@ -111,13 +111,16 @@ const Message = () => {
                                         {
                                             JSON.parse(CryptoJS.AES.decrypt(items.messageMe, codeForMsg).toString(CryptoJS.enc.Utf8))
                                         }
-                                        </div>
+                                    </div>
                                     {
                                         items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
                                     }
                                 </div> : <div className='d-flex justify-content-start'>
                                     <div onClick={() => { showMore(items._id) }} className='textMsg p-2 ps-3 pe-3 mx-sm-3 mx-lg-5 rounded-3'>
-                                        {items.messageMe}</div>
+                                        {
+                                            JSON.parse(CryptoJS.AES.decrypt(items.messageMe, codeForMsg).toString(CryptoJS.enc.Utf8))
+                                        }
+                                    </div>
                                     {
                                         items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
                                     }
