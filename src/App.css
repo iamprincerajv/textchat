@@ -402,6 +402,20 @@ a {
   .updatePro form label {
     width: 90%;
   }
+
+  .settingsCon {
+    display: block !important;
+    text-align: left;
+  }
+  .settingsCon p {
+    margin: 15px !important;
+  }
+  .settingsCon button {
+    margin: 15px !important;
+    margin-top: 0px !important;
+    padding: 5px;
+    padding-inline: 15px;
+  }
 }
 
 /* Key Frames */
