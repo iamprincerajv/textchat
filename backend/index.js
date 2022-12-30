@@ -197,4 +197,18 @@ app.put("/updateProfile/:email", verifyUser,[
     }
 })
 
+// DELETE USER
+app.delete("/deleteUser/:name/:username/:email", verifyUser, async (req, res)=>{
+    let result = await User.findOneAndDelete({
+        name: req.params.name,
+        username: req.params.username,
+        email: req.params.email
+    });
+    res.json({success: "Deleted"});
+
+    if(!result) {
+        res.json({error: "Something went wrong"});
+    }
+})
+
 app.listen(5000);
