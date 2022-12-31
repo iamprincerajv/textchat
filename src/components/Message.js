@@ -111,6 +111,9 @@ const Message = () => {
                                         {
                                             JSON.parse(CryptoJS.AES.decrypt(items.messageMe, codeForMsg).toString(CryptoJS.enc.Utf8))
                                         }
+                                        <p style={{fontSize: "12px", fontStyle: "italic", color: "wheat"}}>
+                                            {new Date(items.date).toLocaleTimeString()}
+                                        </p>
                                     </div>
                                     {
                                         items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""
@@ -120,6 +123,9 @@ const Message = () => {
                                         {
                                             JSON.parse(CryptoJS.AES.decrypt(items.messageMe, codeForMsg).toString(CryptoJS.enc.Utf8))
                                         }
+                                        <p style={{fontSize: "12px", fontStyle: "italic", color: "wheat"}}>
+                                            {new Date(items.date).toLocaleTimeString()}
+                                        </p>
                                     </div>
                                     {
                                         items.username === localStorage.getItem("username") ? <i onClick={() => { deleteMsg(items._id) }} style={{ cursor: "pointer", display: "none" }} className={`pt-2 mt-1 fa-sharp fa-solid fa-trash`} id={`${items._id}`}></i> : ""

@@ -34,7 +34,7 @@ const Friends = (props) => {
         let key = e.target.value;
 
         if (key) {
-            let result = await fetch(`http://52.66.179.35:5000/search/${key}`, {
+            let result = await fetch(`http://localhost:5000/search/${key}`, {
                 headers: {
                     "Authorization": `bearer ${localStorage.getItem("token")}`
                 }

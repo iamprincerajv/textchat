@@ -150,8 +150,8 @@ app.get('/getUsers', verifyUser, async (req, res)=>{
 app.get("/search/:key", verifyUser, async (req, res)=>{
     let result = await User.find({
         '$or': [
-            {username: { $regex: req.params.key}},
-            {name: { $regex: req.params.key}}
+            {username: { $regex: req.params.key.toLowerCase() }},
+            {name: { $regex: new RegExp(req.params.key, "i") }}
         ]
     });
 
