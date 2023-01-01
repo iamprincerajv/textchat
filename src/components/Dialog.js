@@ -10,7 +10,7 @@ const Dialog = (props) => {
         let username = localStorage.getItem("username");
         let email = localStorage.getItem("email")
         if(localStorage.getItem("token")) {
-            let result = await fetch(`http://localhost:5000/deleteUser/${name}/${username}/${email}`, {
+            let result = await fetch(`http://3.109.144.2:5000/deleteUser/${name}/${username}/${email}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `bearer ${localStorage.getItem("token")}`

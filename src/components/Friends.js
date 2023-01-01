@@ -21,7 +21,7 @@ const Friends = (props) => {
     }, [])
 
     const getUsers = async () => {
-        let result = await fetch("http://localhost:5000/getUsers", {
+        let result = await fetch("http://3.109.144.2:5000/getUsers", {
             headers: {
                 "Authorization": `bearer ${localStorage.getItem("token")}`
             }
@@ -34,7 +34,7 @@ const Friends = (props) => {
         let key = e.target.value;
 
         if (key) {
-            let result = await fetch(`http://localhost:5000/search/${key}`, {
+            let result = await fetch(`http://3.109.144.2:5000/search/${key}`, {
                 headers: {
                     "Authorization": `bearer ${localStorage.getItem("token")}`
                 }

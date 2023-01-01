@@ -18,7 +18,7 @@ const Profile = () => {
         let key2 = localStorage.getItem("friendToChat");
 
         if (!localStorage.getItem("friendToChat")) {
-            let result = await fetch(`http://localhost:5000/getProfile/${key1}`, {
+            let result = await fetch(`http://3.109.144.2:5000/getProfile/${key1}`, {
                 headers: {
                     "Authorization": `bearer ${localStorage.getItem("token")}`
                 }
@@ -34,7 +34,7 @@ const Profile = () => {
                 localStorage.setItem("email", result[0].email);
             }
         } else {
-            let result = await fetch(`http://localhost:5000/getProfile/${key2}`, {
+            let result = await fetch(`http://3.109.144.2:5000/getProfile/${key2}`, {
                 headers: {
                     "Authorization": `bearer ${localStorage.getItem("token")}`
                 }
