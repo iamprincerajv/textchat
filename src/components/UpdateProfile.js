@@ -5,12 +5,13 @@ const UpdateProfile = (props) => {
     const [name, setName] = useState(localStorage.getItem("name"));
     const [username, setUsername] = useState(localStorage.getItem("username"));
     const email = localStorage.getItem("email");
+    let oldUsername = localStorage.getItem("username");
 
     const updateProfile = async (e) => {
         e.preventDefault();
 
         if(name.length > 2 && username.length > 2 && username.length < 16) {
-            let result = await fetch(`http://3.109.144.2:5000/updateProfile/${email}`, {
+            let result = await fetch(`http://localhost:5000/updateProfile/${email}/${oldUsername}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

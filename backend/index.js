@@ -171,7 +171,7 @@ app.get("/getProfile/:key", verifyUser, async (req, res)=>{
 })
 
 // UPDATE PROFILE
-app.put("/updateProfile/:email", verifyUser,[
+app.put("/updateProfile/:email/:oldUsername", verifyUser,[
     body('name', 'Enter a valid name').isLength({ min: 3}),
     body('username', 'Enter a valid username').isLength({ min: 3})
 ], async (req, res)=>{
@@ -194,6 +194,29 @@ app.put("/updateProfile/:email", verifyUser,[
 
     if(user) {
         res.json(user);
+    }
+
+    let msg1 = await Msg.findOne({username: req.params.oldUsername});
+    let msg2 = await Msg.findOne({friendToChat: req.params.oldUsername});
+
+    if(msg1) {
+        let msg = await Msg.updateMany(
+            {username: req.params.oldUsername},
+            {
+                $set: {username: req.body.username}
+            }
+        );
+        console.log(msg1, "msg1")
+    }
+    
+    if(msg2) {
+        let msg = await Msg.updateMany(
+            {friendToChat: req.params.oldUsername},
+            {
+                $set: {friendToChat: req.body.username}
+            }
+        );
+        console.log(msg2, "msg2")
     }
 })
 
