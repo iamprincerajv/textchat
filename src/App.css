@@ -277,20 +277,20 @@ a {
 .updatePro {
   width: 90%;
   max-width: 700px;
-  height: 60%;
+  height: 450px;
   background-color: blueviolet;
   display: none;
   z-index: 1;
-  position: absolute;
-  top: 15%;
+  position: fixed;
+  top: 50%;
   left: 50%;
   border-radius: 8px;
   z-index: 1;
-  translate: -50%;
 }
 
 .updateActive {
   display: block;
+  transform: translate(-50%, -50%);
   animation: updateProfile 50ms;
 }
 
@@ -360,13 +360,13 @@ a {
   position: fixed;
   top: 50%;
   left: 50%;
-  translate: -50% -50%;
   border-radius: 5px;
   display: none;
 }
 
 .dialogActive {
   display: block;
+  transform: translate(-50%, -50%);
   animation: dialog 0.1s;
 }
 
