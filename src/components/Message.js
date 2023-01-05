@@ -47,9 +47,9 @@ const Message = () => {
 
             let username = localStorage.getItem("username");
 
-            let result = await fetch("http://3.109.144.2:5000/sendMsg", {
+            let result = await fetch("http://localhost:5000/sendMsg", {
                 method: "POST",
-                body: JSON.stringify({ username: username, messageMe: encryptedMsg, friendToChat: localStorage.getItem("friendToChat"), friendToChatName: localStorage.getItem("friendToChatName") }),
+                body: JSON.stringify({ username: username, messageMe: encryptedMsg, friendToChat: localStorage.getItem("friendToChat") }),
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `bearer ${localStorage.getItem("token")}`

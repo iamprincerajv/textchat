@@ -103,8 +103,7 @@ app.post('/login', [
 app.post("/sendMsg", verifyUser, [
     body('username', 'Username could not be found').exists(),
     body('messageMe', 'Message cannot be empty').exists(),
-    body('friendToChat', 'Receiver could not be found').exists(),
-    body('friendToChatName', 'Receiver could not be found').exists()
+    body('friendToChat', 'Receiver could not be found').exists()
 ], async (req, res)=>{
     let errors = validationResult(req);
     if(!errors.isEmpty()) {
@@ -114,11 +113,10 @@ app.post("/sendMsg", verifyUser, [
     let msg = await Msg.create({
         username: req.body.username,
         messageMe: req.body.messageMe,
-        friendToChat: req.body.friendToChat,
-        friendToChatName: req.body.friendToChatName
+        friendToChat: req.body.friendToChat
     });
 
-    res.json({ username: msg.username, msg: msg.messageMe, friendToChat: msg.friendToChat, friendToChatName: msg.friendToChatName});
+    res.json({ username: msg.username, msg: msg.messageMe, friendToChat: msg.friendToChat});
 })
 
 // GET MESSAGES
@@ -206,7 +204,6 @@ app.put("/updateProfile/:email/:oldUsername", verifyUser,[
                 $set: {username: req.body.username}
             }
         );
-        console.log(msg1, "msg1")
     }
     
     if(msg2) {
@@ -216,7 +213,6 @@ app.put("/updateProfile/:email/:oldUsername", verifyUser,[
                 $set: {friendToChat: req.body.username}
             }
         );
-        console.log(msg2, "msg2")
     }
 })
 
