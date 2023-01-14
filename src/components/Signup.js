@@ -28,7 +28,7 @@ const Signup = () => {
     e.preventDefault();
 
     if (name.length > 2 && username.length > 2 && username.length < 16 && email && password.length > 5 && password.length < 12) {
-      let result = await fetch('http://3.109.144.2:5000/signup', {
+      let result = await fetch('https://hellochat.vercel.app/signup', {
         method: 'post',
         body: JSON.stringify({ name, username, email, password }),
         headers: {

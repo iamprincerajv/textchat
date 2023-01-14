@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     if (email.length > 0 && password.length > 0) {
-      let result = await fetch('http://3.109.144.2:5000/login', {
+      let result = await fetch('https://hellochat.vercel.app/userLogin', {
         method: "post",
         body: JSON.stringify({ email, password }),
         headers: {

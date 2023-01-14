@@ -11,7 +11,7 @@ const UpdateProfile = (props) => {
         e.preventDefault();
 
         if(name.length > 2 && username.length > 2 && username.length < 16) {
-            let result = await fetch(`http://localhost:5000/updateProfile/${email}/${oldUsername}`, {
+            let result = await fetch(`https://hellochat.vercel.app/updateProfile/${email}/${oldUsername}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

@@ -29,7 +29,7 @@ const Message = () => {
     const getMsg = async () => {
         let username = localStorage.getItem("username");
         let friendToChat = localStorage.getItem("friendToChat");
-        let result = await fetch(`http://3.109.144.2:5000/getMsg/${username}/${friendToChat}`, {
+        let result = await fetch(`https://hellochat.vercel.app/getMsg/${username}/${friendToChat}`, {
             headers: {
                 "Authorization": `bearer ${localStorage.getItem("token")}`
             }
@@ -47,7 +47,7 @@ const Message = () => {
 
             let username = localStorage.getItem("username");
 
-            let result = await fetch("http://localhost:5000/sendMsg", {
+            let result = await fetch("https://hellochat.vercel.app/sendMsg", {
                 method: "POST",
                 body: JSON.stringify({ username: username, messageMe: encryptedMsg, friendToChat: localStorage.getItem("friendToChat") }),
                 headers: {
@@ -71,7 +71,7 @@ const Message = () => {
     }
 
     const deleteMsg = async (msgId) => {
-        let result = await fetch(`http://3.109.144.2:5000/delete/${msgId}`, {
+        let result = await fetch(`https://hellochat.vercel.app/delete/${msgId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `bearer ${localStorage.getItem("token")}`
