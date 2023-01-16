@@ -83,7 +83,7 @@ const Login = () => {
           </div>
           <center>
             <div className="formLast d-flex justify-content-center col-xl-4 col-lg-5 col-md-6 col-sm-8 col-10">
-              <p className='me-2'>Already have an account? </p> <Link to='/signup'>Sign Up</Link>
+              <p className='me-2'>Don't have an account? </p> <Link to='/signup'>Sign Up</Link>
             </div>
           </center>
         </div>
